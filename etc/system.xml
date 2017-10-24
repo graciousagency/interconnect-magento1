@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
     <sections>
-        <interconnect translate="label" module="gracious_interconnect">
+        <gracious_interconnect translate="label" module="gracious_interconnect">
             <label>Interconnect</label>
             <tab>service</tab>
             <frontend_type>text</frontend_type>
@@ -10,8 +10,8 @@
             <show_in_website>0</show_in_website>
             <show_in_store>0</show_in_store>
             <groups>
-                <configuration translate="label">
-                    <label>Configuration</label>
+                <settings translate="label">
+                    <label>Settings</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>300</sort_order>
                     <show_in_default>1</show_in_default>
@@ -23,8 +23,8 @@
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </baseurl>
                         <prefix translate="label">
                             <label>Prefix</label>
@@ -43,8 +43,8 @@
                             <show_in_store>1</show_in_store>
                         </apikey>
                     </fields>
-                </configuration>
+                </settings>
             </groups>
-        </interconnect>
+        </gracious_interconnect>
     </sections>
 </config>

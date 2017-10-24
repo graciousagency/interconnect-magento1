@@ -72,7 +72,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
      * @return array|null
      */
     protected function setupAddressData($address) {
-        if($address === null) {
+        if(!($address instanceof Mage_Customer_Model_Address) || !($address instanceof Mage_Sales_Model_Order_Address) || null === $address) {
             return null;
         }
 

@@ -3,12 +3,12 @@
 /**
  * Class Gracious_Interconnect_Model_CustomerRegisterSuccessEventObserver
  */
-class Gracious_Interconnect_Model_CustomerRegisterSuccesEventObserver extends Gracioust_Interconnect_Model_ObserverAbstract
+class Gracious_Interconnect_Model_CustomerRegisterSuccesEventObserver extends Gracious_Interconnect_Model_ObserverAbstract
 {
 
     public function execute(Varien_Event_Observer $observer) {
         $customer = $observer->getEvent()->getCustomer();
-        Mage::log('Dude, got an event : '.get_class($observer));
+        Mage::log('Dude, got an event : '.get_class($customer));
 
         if(!$this->config->isComplete()) {
             Mage::log(__METHOD__.' :: Unable to rock and roll: module config values not configured (completely) in the backend. Aborting....');
@@ -25,6 +25,7 @@ class Gracious_Interconnect_Model_CustomerRegisterSuccesEventObserver extends Gr
         }catch (Throwable $exception) {
 //            Mage::log('Failed to prepare the customer data. *** MESSAGE ***:  '.$exception->getMessage().',  *** TRACE ***:'.$exception->getTraceAsString());
             Mage::log('Failed to prepare the customer data. *** MESSAGE ***:  '.$exception->getMessage());
+            Mage::log('*** TRACE ***:  '.$exception->getTraceAsString());
 
             return;
         }

@@ -6,7 +6,7 @@
  * Time: 11:33
  */
 
-abstract class Gracioust_Interconnect_Model_ObserverAbstract
+abstract class Gracious_Interconnect_Model_ObserverAbstract
 {
     /**
      * @var Gracious_Interconnect_Helper_Config
@@ -15,6 +15,6 @@ abstract class Gracioust_Interconnect_Model_ObserverAbstract
 
     public function __construct()
     {
-        $this->helperConfig = Mage::helper('gracious_interconnect/config');
+        $this->config = Mage::helper('gracious_interconnect/config');
     }
 }

@@ -41,7 +41,8 @@ class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract
      */
     protected function getLazy($xmlPath) {
         if(!isset($this->lazyData[$xmlPath])) {
-            $this->lazyData[$xmlPath] = Mage::getStoreConfig($xmlPath);//Mage::getConfig()->getNode(self::XML_PATH_TEMPLATE_FILTER);
+            $this->lazyData[$xmlPath] = Mage::getStoreConfig($xmlPath);
+//            $this->lazyData[$xmlPath] = Mage::getConfig()->getNode(self::XML_PATH_TEMPLATE_FILTER);
         }
 
         return $this->lazyData[$xmlPath];

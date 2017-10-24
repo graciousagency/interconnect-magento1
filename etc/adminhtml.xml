@@ -8,10 +8,10 @@
                         <children>
                             <config>
                                 <children>
-                                    <foobarsection translate="title" module="foobar">
-                                        <title>Foobar Section Section</title>
+                                    <gracious_interconnect translate="title" module="gracious_interconnect">
+                                        <title>Interconnect</title>
                                         <sort_order>0</sort_order>
-                                    </foobarsection>
+                                    </gracious_interconnect>
                                 </children>
                             </config>
                         </children>
