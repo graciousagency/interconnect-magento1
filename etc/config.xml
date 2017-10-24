@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gracious_Interconnect>
+            <version>0.9</version>
+        </Gracious_Interconnect>
+    </modules>
+    <global>
+        <helpers>
+            <gracious_interconnect>
+                <class>Gracious_Interconnect_Helper</class>
+                <!--<class>Gracious_Interconnect_Helper_Config</class>-->
+            </gracious_interconnect>
+        </helpers>
+        <events>
+            <customer_register_success>
+                <observers>
+                    <customer_register_success_observer>
+                        <class>Gracious_Interconnect_Model_CustomerRegisterSuccesEventObserver</class>
+                        <method>execute</method>
+                    </customer_register_success_observer>
+                </observers>
+            </customer_register_success>
+        </events>
+    </global>
+    <frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <Gracious_Interconnect before="Mage_Newsletter">Gracious_Interconnect_Newsletter</Gracious_Interconnect>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+    </frontend>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <gracious_interconnect translate="title" module="gracious_interconnect">
+                                        <title>Configuration</title>
+                                    </gracious_interconnect>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
