@@ -10,8 +10,33 @@ synchronize data manually. These console commands can be run from the shell fold
 - 'php sync_subscriber.php' :   Synchronizes a subscriber by providing the --id={subscriberId} parameter
 
 **To get the module up and running:**
-- Install the module using composer in the app/code/local folder.
-- Create a module config file 'Gracious_Interconnect.xml' in the app/etc folder with this content:
+- Create a folder /Gracious/Interconnect under app/local.
+- Install the module using composer in this folder. After installation your folder structure for this
+module should look like this:
+````
+    /app
+        /code
+            /local
+                /Gracious
+                    /Interconnect
+                        /Console
+                        /controllers
+                        /etc
+                        /Foundation
+                        /Generic
+                        /Helper
+                        /Http
+                        /Model
+                        /Observer
+                        /Reflection
+                        /Reporting
+                        /shell
+                        /Support
+                        CHANGELOG.md
+                        composer.json
+                        README.md
+````
+- Now create a module config file 'Gracious_Interconnect.xml' in the app/etc folder with this content:
 ```xml
 <?xml version="1.0"?>
 <config>
