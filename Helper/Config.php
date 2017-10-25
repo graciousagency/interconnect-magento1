@@ -3,8 +3,7 @@
 /**
  * Class Gracious_Interconnect_Helper_Config
  */
-class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract
-{
+class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract {
     const XML_PATH_SERVICE_BASE_URL     = 'gracious_interconnect/settings/baseurl';
     const XML_PATH_PREFIX               = 'gracious_interconnect/settings/prefix';
     const XML_PATH_API_KEY              = 'gracious_interconnect/settings/apikey';
@@ -40,9 +39,8 @@ class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract
      * @return string
      */
     protected function getLazy($xmlPath) {
-        if(!isset($this->lazyData[$xmlPath])) {
+        if (!isset($this->lazyData[$xmlPath])) {
             $this->lazyData[$xmlPath] = Mage::getStoreConfig($xmlPath);
-//            $this->lazyData[$xmlPath] = Mage::getConfig()->getNode(self::XML_PATH_TEMPLATE_FILTER);
         }
 
         return $this->lazyData[$xmlPath];
@@ -59,7 +57,6 @@ class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract
 
         return (is_string($serviceBaseUrl) && trim($serviceBaseUrl) != '') &&
             (is_string($interconnectPrefix) && trim($interconnectPrefix) != '') &&
-            (is_string($apiKey) && trim($apiKey) != '')
-            ;
+            (is_string($apiKey) && trim($apiKey) != '');
     }
 }

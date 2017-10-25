@@ -3,8 +3,8 @@
 /**
  * Class Gracious_Interconnect_Http_Request_Data_Subscriber_Factory
  */
-class Gracious_Interconnect_Http_Request_Data_Subscriber_Factory extends Gracious_Interconnect_Http_Request_Data_FactoryAbstract
-{
+class Gracious_Interconnect_Http_Request_Data_Subscriber_Factory extends Gracious_Interconnect_Http_Request_Data_FactoryAbstract {
+
     /**
      * @param Mage_Newsletter_Model_Subscriber $subscriber
      * @param array $extraData
@@ -17,11 +17,11 @@ class Gracious_Interconnect_Http_Request_Data_Subscriber_Factory extends Graciou
         $updatedAt = isset($extraData['updatedAt']) ? $extraData['updatedAt'] : null;
 
         return [
-            'subscriptionId'        => $prefixedSubscriberId,
-            'emailAddress'          => $subscriber->getEmail(),
-            'optIn'                 => $subscriber->isSubscribed(),
-            'createdAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($createdAt),
-            'updatedAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($updatedAt)
+            'subscriptionId' => $prefixedSubscriberId,
+            'emailAddress' => $subscriber->getEmail(),
+            'optIn' => $subscriber->isSubscribed(),
+            'createdAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($createdAt),
+            'updatedAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($updatedAt)
         ];
     }
 }

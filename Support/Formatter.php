@@ -6,8 +6,7 @@
  * @package Gracious\Interconnect\Support
  * Utility class for formatting data and strings to desired format before sending it to the server
  */
-abstract class Gracious_Interconnect_Support_Formatter
-{
+abstract class Gracious_Interconnect_Support_Formatter {
     /**
      * @param int|string $ID
      * @param string $entityTypeHandle
@@ -15,9 +14,9 @@ abstract class Gracious_Interconnect_Support_Formatter
      * @return string
      */
     public static function prefixID($ID, $entityTypeHandle, $merchantHandle) {
-        $entityTypeHandle = preg_replace('/_/','-', $entityTypeHandle);
+        $entityTypeHandle = preg_replace('/_/', '-', $entityTypeHandle);
 
-        return strtoupper($merchantHandle).'-'.strtoupper($entityTypeHandle).'-'.(string)$ID;
+        return strtoupper($merchantHandle) . '-' . strtoupper($entityTypeHandle) . '-' . (string)$ID;
     }
 
     /**
@@ -26,7 +25,7 @@ abstract class Gracious_Interconnect_Support_Formatter
      * @return string
      */
     public static function formatDateStringToIso8601($dateString) {
-        if($dateString === null) {
+        if ($dateString === null) {
             return null;
         }
 
@@ -41,8 +40,8 @@ abstract class Gracious_Interconnect_Support_Formatter
      * @return string
      */
     public static function prefixLastName($lastName, $prefix) {
-        if(is_string($prefix) && trim($prefix) != '') {
-            return $prefix.' '.$lastName;
+        if (is_string($prefix) && trim($prefix) != '') {
+            return $prefix . ' ' . $lastName;
         }
 
         return $lastName;

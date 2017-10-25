@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Class CustomerHistoricInfo
  * @package Gracious\Interconnect\Model
  * Provides historic information about a customer
  */
-class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializable
-{
+class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializable {
+
     /**
      * @var string
      */
@@ -43,10 +44,9 @@ class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializab
      * @param float $totalOrderAmount
      * @param string $firstOrderDate
      * @param string $lastOrderDate
-     * @param string $registrationDate|null
+     * @param string $registrationDate |null
      */
-    public function __construct($email, $totalOrderCount, $totalOrderAmount, $firstOrderDate, $lastOrderDate, $registrationDate = null)
-    {
+    public function __construct($email, $totalOrderCount, $totalOrderAmount, $firstOrderDate, $lastOrderDate, $registrationDate = null) {
         $this->email = $email;
         $this->totalOrderCount = $totalOrderCount;
         $this->totalOrderAmount = $totalOrderAmount;
@@ -109,13 +109,13 @@ class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializab
      */
     public function toArray() {
         return [
-            'email'             => $this->email,
-            'totalOrderCount'   => $this->totalOrderCount,
-            'totalOrderAmount'  => $this->totalOrderAmount,
-            'firstOrderDate'    => $this->firstOrderDate,
-            'lastOrderDate'     => $this->lastOrderDate,
-            'registrationDate'  => $this->registrationDate,
-            'isRegistered'      => $this->isRegisteredCustomer()
+            'email' => $this->email,
+            'totalOrderCount' => $this->totalOrderCount,
+            'totalOrderAmount' => $this->totalOrderAmount,
+            'firstOrderDate' => $this->firstOrderDate,
+            'lastOrderDate' => $this->lastOrderDate,
+            'registrationDate' => $this->registrationDate,
+            'isRegistered' => $this->isRegisteredCustomer()
         ];
     }
 

@@ -1,14 +1,15 @@
 <?php
 
-
-abstract class Gracious_Interconnect_Support_Text_Inflector
-{
+/**
+ * Class Gracious_Interconnect_Support_Text_Inflector
+ */
+abstract class Gracious_Interconnect_Support_Text_Inflector {
     /**
      * @param $text
      * @return mixed
      */
     public static function unSnakeCase($text) {
-        if($text === null) {
+        if ($text === null) {
             return null;
         }
 

@@ -1,22 +1,19 @@
 <?php
-require_once(Mage::getModuleDir('controllers','Mage_Newsletter').DS.'SubscriberController.php');
-require_once(__DIR__.DS.'..'.DS.'..'.DS.'vendor'.DS.'autoload.php');
+require_once(Mage::getModuleDir('controllers', 'Mage_Newsletter') . DS . 'SubscriberController.php');
 
 /**
  * Class Gracious_Interconnect_Newsletter_SubscriberController
  */
-class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newsletter_SubscriberController
-{
+class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newsletter_SubscriberController {
 
     /**
      * {@inheritdoc}
      */
-    public function newAction()
-    {
+    public function newAction() {
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
-            $session            = Mage::getSingleton('core/session');
-            $customerSession    = Mage::getSingleton('customer/session');
-            $email              = (string) $this->getRequest()->getPost('email');
+            $session = Mage::getSingleton('core/session');
+            $customerSession = Mage::getSingleton('customer/session');
+            $email = (string)$this->getRequest()->getPost('email');
 
             try {
                 if (!Zend_Validate::is($email, 'EmailAddress')) {
@@ -39,20 +36,17 @@ class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newslet
                 $status = Mage::getModel('newsletter/subscriber')->subscribe($email);
                 if ($status == Mage_Newsletter_Model_Subscriber::STATUS_NOT_ACTIVE) {
                     $session->addSuccess($this->__('Confirmation request has been sent.'));
-                }
-                else {
+                } else {
                     $session->addSuccess($this->__('Thank you for your subscription.'));
                     $subscriber = $this->getSubscriberByEmail($email);
 
-                    if($subscriber !== null) {
+                    if ($subscriber !== null) {
                         $this->sendSubscription($subscriber);
                     }
                 }
-            }
-            catch (Mage_Core_Exception $e) {
+            } catch (Mage_Core_Exception $e) {
                 $session->addException($e, $this->__('There was a problem with the subscription: %s', $e->getMessage()));
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $session->addException($e, $this->__('There was a problem with the subscription.'));
             }
         }
@@ -62,17 +56,16 @@ class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newslet
     /**
      * Subscription confirm action
      */
-    public function confirmAction()
-    {
-        $id    = (int) $this->getRequest()->getParam('id');
-        $code  = (string) $this->getRequest()->getParam('code');
+    public function confirmAction() {
+        $id = (int)$this->getRequest()->getParam('id');
+        $code = (string)$this->getRequest()->getParam('code');
 
         if ($id && $code) {
             $subscriber = Mage::getModel('newsletter/subscriber')->load($id);
             $session = Mage::getSingleton('core/session');
 
-            if($subscriber->getId() && $subscriber->getCode()) {
-                if($subscriber->confirm($code)) {
+            if ($subscriber->getId() && $subscriber->getCode()) {
+                if ($subscriber->confirm($code)) {
                     $session->addSuccess($this->__('Your subscription has been confirmed.'));
                     $this->sendSubscription($subscriber);
                 } else {
@@ -92,15 +85,16 @@ class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newslet
      */
     protected function getSubscriberByEmail($emailAddress) {
         try {
-            /* @var $subscriber Mage_Newsletter_Model_Subscriber */ $subscriber = Mage::getModel('newsletter/subscriber')->loadByEmail($emailAddress);
+            /* @var $subscriber Mage_Newsletter_Model_Subscriber */
+            $subscriber = Mage::getModel('newsletter/subscriber')->loadByEmail($emailAddress);
 
-            if($subscriber !== null && $subscriber->getId() === null) {
+            if ($subscriber !== null && $subscriber->getId() === null) {
                 return null;
             }
 
             return $subscriber;
-        }catch (Exception $exception) {
-            Mage::log('Exception: '.$exception->getMessage());
+        } catch (Exception $exception) {
+            Gracious_Interconnect_Reporting_Log::exception($exception);
         }
 
         return null;
@@ -113,16 +107,20 @@ class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newslet
         try {
             $subscriberFactory = new Gracious_Interconnect_Http_Request_Data_Subscriber_Factory();
             // Set date manually; model/db table does not have these properties
-            $date = date('Y-h-m d:i:s');
+            $date = date('Y-m-d H:i:s');
             $requestData = $subscriberFactory->setupData($subscriber, [
-                'updatedAt' =>  $date,
-                'createdAt' =>  $date
+                'updatedAt' => $date,
+                'createdAt' => $date
             ]);
-            Mage::log(json_encode($requestData));
+
+            if (Mage::getIsDeveloperMode()) {
+                Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . '=> data = ' . json_encode($requestData));
+            }
+
             $client = new Gracious_Interconnect_Http_Request_Client();
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_NEWSLETTER_SUBSCRIBER);
-        }catch (Exception $exception) {
-            Mage::log('Exception: '.$exception->getMessage());
+        } catch (Exception $exception) {
+            Gracious_Interconnect_Reporting_Log::exception($exception);
         }
     }
 }

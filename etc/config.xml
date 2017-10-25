@@ -9,18 +9,25 @@
         <helpers>
             <gracious_interconnect>
                 <class>Gracious_Interconnect_Helper</class>
-                <!--<class>Gracious_Interconnect_Helper_Config</class>-->
             </gracious_interconnect>
         </helpers>
         <events>
             <customer_register_success>
                 <observers>
                     <customer_register_success_observer>
-                        <class>Gracious_Interconnect_Model_CustomerRegisterSuccesEventObserver</class>
+                        <class>Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver</class>
                         <method>execute</method>
                     </customer_register_success_observer>
                 </observers>
             </customer_register_success>
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <checkout_onepage_controller_success_action_observer>
+                        <class>Gracious_Interconnect_Observer_CheckoutOnePageControllerSuccessActionEventObserver</class>
+                        <method>execute</method>
+                    </checkout_onepage_controller_success_action_observer>
+                </observers>
+            </checkout_onepage_controller_success_action>
         </events>
     </global>
     <frontend>

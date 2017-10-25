@@ -1,14 +1,13 @@
 <?php
-use Mage_Sales_Model_Order as Order;
-use Gracious_Interconnect_Support_PaymentStatus as PaymentStatus;
-
-class Gracious_Interconnect_Reflection_OrderReflector
-{
+/**
+ * Class Gracious_Interconnect_Reflection_OrderReflector
+ */
+class Gracious_Interconnect_Reflection_OrderReflector {
     /**
      * @param Order $order
      * @return string
      */
-    public function getOrderPaymentStatus(Order $order) {
+    public function getOrderPaymentStatus(Mage_Sales_Model_Order $order) {
         $total = $order->getBaseGrandTotal();
         $totalPaid = $order->getTotalPaid();
         $amountRemaining = $total - $totalPaid;
@@ -16,16 +15,16 @@ class Gracious_Interconnect_Reflection_OrderReflector
 
         switch ($amountRemaining) {
             case $amountRemaining == 0:
-                $paymentStatus = PaymentStatus::PAID;
+                $paymentStatus = Gracious_Interconnect_Support_PaymentStatus::PAID;
                 break;
 
             case $amountRemaining == $total:
-                $paymentStatus = PaymentStatus::NOT_PAID;
+                $paymentStatus = Gracious_Interconnect_Support_PaymentStatus::NOT_PAID;
                 break;
 
             case $amountRemaining > 0 && $amountRemaining < $total;
             default:
-                $paymentStatus = PaymentStatus::PARTIALLY_PAID;
+                $paymentStatus = Gracious_Interconnect_Support_PaymentStatus::PARTIALLY_PAID;
                 break;
         }
 

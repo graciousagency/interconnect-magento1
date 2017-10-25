@@ -3,8 +3,7 @@
 /**
  * Class Gracious_Interconnect_Http_Request_Data_Order_Factory
  */
-class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Interconnect_Http_Request_Data_FactoryAbstract
-{
+class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Interconnect_Http_Request_Data_FactoryAbstract {
 
     /**
      * @param Mage_Sales_Model_Order $order
@@ -12,34 +11,34 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
      */
     public function setupData(Mage_Sales_Model_Order $order) {
         $quoteId = $order->getQuoteId();
-        $prefixedQuoteId = $quoteId !== null ? $this->generateEntityId($quoteId,Gracious_Interconnect_Support_EntityType::QUOTE) : null;
+        $prefixedQuoteId = $quoteId !== null ? $this->generateEntityId($quoteId, Gracious_Interconnect_Support_EntityType::QUOTE) : null;
         $orderItemFactory = new Gracious_Interconnect_Http_Request_Data_Order_Item_Factory();
         $paymentMethod = Gracious_Interconnect_Support_Text_Inflector::unSnakeCase($order->getPayment()->getMethod());
         $paymentMethod = ucwords($paymentMethod);
-        $total = $order->getBaseGrandTotal();
+        $total = $order->getGrandTotal();
         $discountAmount = $order->getDiscountAmount();
-        $discountPercentage = ($discountAmount !== null && $discountAmount > 0 && $total !== null && $total > 0) ? (($discountAmount / $total) * 100): 0;
+        $discountPercentage = ($discountAmount !== null && $discountAmount > 0 && $total !== null && $total > 0) ? (($discountAmount / $total) * 100) : 0;
 
         return [
-            'orderId'               => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
-            'quoteId'               => $prefixedQuoteId,
-            'incrementId'           => $order->getIncrementId(),
-            'quantity'              => (int)$order->getTotalQtyOrdered(),
-            'totalAmountInCents'    => Gracious_Interconnect_Support_PriceCents::create($total)->toInt(),
+            'orderId' => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
+            'quoteId' => $prefixedQuoteId,
+            'incrementId' => $order->getIncrementId(),
+            'quantity' => (int)$order->getTotalQtyOrdered(),
+            'totalAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($total)->toInt(),
             'discountAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($discountAmount)->toInt(),
-            'discountPercentage'    => round($discountPercentage, 2),
-            'discountType'          => $order->getDiscountDescription(),
-            'paymentStatus'         => $this->getPaymentStatus($order),
-            'orderStatus'           => ucfirst($order->getState()),
-            'shipmentStatus'        => $this->getOrderShipmentStatus($order),
-            'couponCode'            => $order->getCouponCode(),
-            'paymentMethod'         => $paymentMethod,
-            'emailAddress'          => $order->getCustomerEmail(),
-            'customer'              => $this->getOrderCustomerData($order),
-            'orderedAtISO8601'      => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'updatedAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
-            'createdAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'items'                 => $orderItemFactory->setupData($order)
+            'discountPercentage' => round($discountPercentage, 2),
+            'discountType' => $order->getDiscountDescription(),
+            'paymentStatus' => $this->getPaymentStatus($order),
+            'orderStatus' => ucfirst($order->getState()),
+            'shipmentStatus' => $this->getOrderShipmentStatus($order),
+            'couponCode' => $order->getCouponCode(),
+            'paymentMethod' => $paymentMethod,
+            'emailAddress' => $order->getCustomerEmail(),
+            'customer' => $this->getOrderCustomerData($order),
+            'orderedAtISO8601' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'updatedAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
+            'createdAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'items' => $orderItemFactory->setupData($order)
         ];
     }
 
@@ -48,7 +47,8 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
      * @return string
      */
     protected function getPaymentStatus(Mage_Sales_Model_Order $order) {
-        /* @var $orderReflector Gracious_Interconnect_Reflection_OrderReflector */ $orderReflector =  new Gracious_Interconnect_Reflection_OrderReflector();
+        /* @var $orderReflector Gracious_Interconnect_Reflection_OrderReflector */
+        $orderReflector = new Gracious_Interconnect_Reflection_OrderReflector();
         $paymentStatus = $orderReflector->getOrderPaymentStatus($order);
 
         return ucwords(Gracious_Interconnect_Support_Text_Inflector::unSnakeCase($paymentStatus));
@@ -65,11 +65,11 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         // Determining shipment status in Magento is quite complex because an order can have multiple shipments and can also contain virtual and downloadable products.
 
         // !!!: This if-statement has been intentionally placed above the !$order->canShip() check because that can return false, even when there are shipments (possibly because the order can't ship as it has already been shipped?)
-        if(is_array($shipments) && !empty($shipments)) {
+        if (is_array($shipments) && !empty($shipments)) {
             return 'Shipped'; // consider order partially shipped at this moment.
         }
 
-        if(!$order->canShip()) {
+        if (!$order->canShip()) {
             // Doesn't always mean an order doesn't have shippable items; it can also be possible there are other reasons it won't ship.
 
             return 'Won\'t Ship';
@@ -86,13 +86,13 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         $customerData = null;
         $customerFactory = new Gracious_Interconnect_Http_Request_Data_Customer_Factory();
 
-        if($order->getCustomerIsGuest()) {
+        if ($order->getCustomerIsGuest()) {
             return $customerFactory->setUpAnonymousCustomerDataFromOrder($order);
         }
 
         $customer = $this->getOrderCustomer($order);
 
-        if($customer === null) {
+        if ($customer === null) {
             return $customerFactory->setUpAnonymousCustomerDataFromOrder($order);
         }
 
@@ -105,9 +105,10 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
      */
     protected function getOrderCustomer(Mage_Sales_Model_Order $order) {
         $customerId = $order->getCustomerId();
-        /* @var $customer Mage_Customer_Model_Customer */ $customer = Mage::getModel('customer/customer')->load($customerId);
+        /* @var $customer Mage_Customer_Model_Customer */
+        $customer = Mage::getModel('customer/customer')->load($customerId);
 
-        if($customer !== null && $customer->getId() !== null) {
+        if ($customer !== null && $customer->getId() !== null) {
             return $customer;
         }
 
