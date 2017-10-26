@@ -102,14 +102,14 @@ abstract class Gracious_Interconnect_Console_CommandAbstract extends Mage_Shell_
 
     /**
      * @param mixed $value
-     * @throws Exception
+     * @throws Gracious_Interconnect_System_Exception
      */
     protected function evalInt($value) {
         // Cast to string if it's a numeric type because regex evaluates strings
         $value = is_numeric($value) ? (string)$value : $value;
 
         if (!is_string($value) || !Gracious_Interconnect_Support_Validation_RegEx::test(Gracious_Interconnect_Support_Validation_RegEx::INT, $value)) {
-            throw new Exception('Expected integer but got ' . gettype($value));
+            throw new Gracious_Interconnect_System_Exception('Expected integer but got ' . gettype($value));
         }
     }
 }

@@ -18,6 +18,11 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
     /**
      * @var string
      */
+    protected $moduleType;
+
+    /**
+     * @var string
+     */
     protected $magentoVersion;
 
     /**
@@ -29,7 +34,8 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
      * Gracious_Interconnect_Foundation_Environment constructor.
      */
     private function __construct() {
-        $this->moduleVersion = static::detectModuleVersion();
+        $this->moduleVersion = static::parseModuleVersion();
+        $this->moduleType = static::parseModuleType();
         $this->magentoVersion = Mage::getVersion();
         $domain = preg_replace('/^https?:\/\//', '', Mage::getBaseUrl (Mage_Core_Model_Store::URL_TYPE_WEB));
         $domain = rtrim($domain, '/');
@@ -41,6 +47,13 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
      */
     public function getModuleVersion() {
         return $this->moduleVersion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModuleType() {
+        return $this->moduleType;
     }
 
     /**
@@ -63,6 +76,7 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
     public function toArray() {
         return [
             'moduleVersion'     => $this->moduleVersion,
+            'moduleType'        => $this->moduleType,
             'magentoVersion'    => $this->magentoVersion,
             'domain'            => $this->domain
         ];
@@ -97,20 +111,35 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
     /**
      * @return null|string
      */
-    public static function detectModuleVersion() {
+    public static function parseModuleVersion() {
+        return static::parseComposerValue('version');
+    }
+
+    /**
+     * @return string
+     */
+    public static function parseModuleType() {
+        return static::parseComposerValue('type');
+    }
+
+    /**
+     * @param string $key
+     * @param null $default
+     * @return mixed
+     */
+    protected static function parseComposerValue($key, $default = null) {
         $composerFileHandle = __DIR__.DS.'..'.DS.'composer.json';
 
         if(!file_exists($composerFileHandle) || !is_readable($composerFileHandle)) {
-            return null;
+            return $default;
         }
 
         $data = json_decode(file_get_contents($composerFileHandle));
 
-        if(!isset($data->version)) {
-            return null;
+        if(!isset($data->{$key})) {
+            return $default;
         }
 
-        return $data->version;
+        return $data->{$key};
     }
-
 }

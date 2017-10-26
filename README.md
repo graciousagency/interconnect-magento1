@@ -32,6 +32,7 @@ module should look like this:
                         /Reporting
                         /shell
                         /Support
+                        /System
                         CHANGELOG.md
                         composer.json
                         README.md

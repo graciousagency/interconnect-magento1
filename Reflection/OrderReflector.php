@@ -4,7 +4,7 @@
  */
 class Gracious_Interconnect_Reflection_OrderReflector {
     /**
-     * @param Order $order
+     * @param Mage_Sales_Model_Order $order
      * @return string
      */
     public function getOrderPaymentStatus(Mage_Sales_Model_Order $order) {
