@@ -28,6 +28,13 @@ class Gracious_Interconnect_Observer_CheckoutOnePageControllerSuccessActionEvent
         }
 
         $orderId = $orderIds[0];
+
+        if(!Gracious_Interconnect_Support_Validation_RegEx::test(Gracious_Interconnect_Support_Validation_RegEx::INT, (string)$orderId)) { // don't trust Magento entirely here... There's something in the array but is it an integer?
+            Gracious_Interconnect_Reporting_Log::alert(__METHOD__ . '=> Invalid order id (' . json_encode($orderId) . ') Aborting....');
+
+            return;
+        }
+
         $orderRepository = Mage::getModel('sales/order');
         /* @var $order Mage_Sales_Model_Order */
         $order = $orderRepository->load($orderId);

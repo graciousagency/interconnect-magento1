@@ -113,10 +113,6 @@ class Gracious_Interconnect_Newsletter_SubscriberController extends Mage_Newslet
                 'createdAt' => $date
             ]);
 
-            if (Mage::getIsDeveloperMode()) {
-                Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . '=> data = ' . json_encode($requestData));
-            }
-
             $client = new Gracious_Interconnect_Http_Request_Client();
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_NEWSLETTER_SUBSCRIBER);
         } catch (Exception $exception) {

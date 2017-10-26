@@ -28,12 +28,12 @@ abstract class Gracious_Interconnect_Http_Request_Data_FactoryAbstract {
     protected final function generateEntityId($id, $entityPrefix) {
         if ($id === null || trim($id) == '') {
             // Throw an exception because formatting a unique handle is a critical step
-            throw new Gracious_Interconnect_System_Exception('Unable to format prefixed ID: invalid entity id!');
+            throw new Gracious_Interconnect_System_InvalidArgumentException('Unable to format prefixed ID: invalid entity id!');
         }
 
         if (!is_string($entityPrefix) || trim($entityPrefix) == '') {
             // Throw an exception because formatting a unique handle is a critical step
-            throw new Gracious_Interconnect_System_Exception('Unable to format prefixed ID: invalid entity prefix!');
+            throw new Gracious_Interconnect_System_InvalidArgumentException('Unable to format prefixed ID: invalid entity prefix!');
         }
 
         $prefix = $this->config->getInterconnectPrefix();

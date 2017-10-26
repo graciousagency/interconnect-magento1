@@ -28,10 +28,6 @@ class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver extend
             return;
         }
 
-        if (Mage::getIsDeveloperMode()) {
-            Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . '=> Customer data: ' . json_encode($requestData));
-        }
-
         // Try/catch because we don't want to disturb critical processes such as the checkout
         try {
             $client = new Gracious_Interconnect_Http_Request_Client();

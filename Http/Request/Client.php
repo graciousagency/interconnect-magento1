@@ -34,7 +34,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
      * @return static
      */
     public function setBaseUrl($baseUrl) {
-        $this->baseUrl = $baseUrl;
+        $this->baseUrl = rtrim($baseUrl, '/');
 
         return $this;
     }
@@ -58,6 +58,15 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             throw new Gracious_Interconnect_System_Exception('Unable to make request: base url not set');
         }
 
+        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
+            // Overcome ssl problems on local machine
+            Gracious_Interconnect_Reporting_Log::notice(__METHOD__.'=> Local machine; disabling ssl checks...');
+            $curlAdapter = new Zend_Http_Client_Adapter_Curl();
+            $curlAdapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
+            $curlAdapter->setCurlOption(CURLOPT_SSL_VERIFYHOST, false);
+            $this->setAdapter($curlAdapter);
+        }
+
         $metaData = Gracious_Interconnect_Foundation_Environment::getInstance();
         $json = json_encode($data);
 
@@ -74,7 +83,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             ])
             ->setRawData($json);
 
-        if(Mage::getIsDeveloperMode()) {
+        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
             Gracious_Interconnect_Reporting_Log::debug(str_repeat('*****', 30));
             Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . ':: Posting to \'' . $this->baseUrl . '/' . $endPoint . '\'. Data = ' . $json);
         }
@@ -96,6 +105,10 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             Gracious_Interconnect_Reporting_Log::alert('Response status = ' . $statusCode . ', response = ' . (string)$response);
 
             throw new Gracious_Interconnect_System_Exception('Error making request to \'' . $this->getUri(true) . '\' with http status code :' . $statusCode . ' and response ' . (string)$response);
+        }
+
+        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
+            Gracious_Interconnect_Reporting_Log::info('Data sent to: '.$this->getUri(true) .'. All done here...');
         }
     }
 }

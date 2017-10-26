@@ -18,27 +18,29 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         $total = $order->getGrandTotal();
         $discountAmount = $order->getDiscountAmount();
         $discountPercentage = ($discountAmount !== null && $discountAmount > 0 && $total !== null && $total > 0) ? (($discountAmount / $total) * 100) : 0;
+        $couponCode = $order->getCouponCode();
+        $discountType = (is_string($couponCode) && trim($couponCode)) != '' ? 'Coupon' :  $order->getDiscountDescription();
 
         return [
-            'orderId' => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
-            'quoteId' => $prefixedQuoteId,
-            'incrementId' => $order->getIncrementId(),
-            'quantity' => (int)$order->getTotalQtyOrdered(),
-            'totalAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($total)->toInt(),
+            'orderId'               => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
+            'quoteId'               => $prefixedQuoteId,
+            'incrementId'           => $order->getIncrementId(),
+            'quantity'              => (int)$order->getTotalQtyOrdered(),
+            'totalAmountInCents'    => Gracious_Interconnect_Support_PriceCents::create($total)->toInt(),
             'discountAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($discountAmount)->toInt(),
-            'discountPercentage' => round($discountPercentage, 2),
-            'discountType' => $order->getDiscountDescription(),
-            'paymentStatus' => $this->getPaymentStatus($order),
-            'orderStatus' => ucfirst($order->getState()),
-            'shipmentStatus' => $this->getOrderShipmentStatus($order),
-            'couponCode' => $order->getCouponCode(),
-            'paymentMethod' => $paymentMethod,
-            'emailAddress' => $order->getCustomerEmail(),
-            'customer' => $this->getOrderCustomerData($order),
-            'orderedAtISO8601' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'updatedAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
-            'createdAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'items' => $orderItemFactory->setupData($order)
+            'discountPercentage'    => round($discountPercentage, 2),
+            'discountType'          => $discountType,
+            'paymentStatus'         => $this->getPaymentStatus($order),
+            'orderStatus'           => ucfirst($order->getState()),
+            'shipmentStatus'        => $this->getOrderShipmentStatus($order),
+            'couponCode'            => $couponCode,
+            'paymentMethod'         => $paymentMethod,
+            'emailAddress'          => $order->getCustomerEmail(),
+            'customer'              => $this->getOrderCustomerData($order),
+            'orderedAtISO8601'      => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'updatedAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
+            'createdAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'items'                 => $orderItemFactory->setupData($order)
         ];
     }
 

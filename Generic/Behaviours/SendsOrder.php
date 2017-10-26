@@ -20,7 +20,7 @@ trait Gracious_Interconnect_Generic_Behaviours_SendsOrder {
             return;
         }
 
-        if (Mage::getIsDeveloperMode()) {
+        if (Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
             Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . '=> Order data: ' . json_encode($requestData));
         }
 
@@ -32,7 +32,5 @@ trait Gracious_Interconnect_Generic_Behaviours_SendsOrder {
 
             return;
         }
-
-        Gracious_Interconnect_Reporting_Log::info(__METHOD__ . '=> Order sent to Interconnect (' . $order->getId() . ')');
     }
 }
