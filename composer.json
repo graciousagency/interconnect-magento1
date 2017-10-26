@@ -2,7 +2,7 @@
     "name": "gracious/interconnect-magento1",
     "description": "Webhook module for Magento1 that channels data to the Gracious Interconnect webservice which in turn formats and proxies the data to connected consumer services",
     "type": "magento1-module",
-    "version": "0.9.0",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Justin van Schaick",
