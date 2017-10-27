@@ -18,7 +18,8 @@ class Gracious_Interconnect_Console_SyncOrderCommand extends Gracious_Interconne
 
         $orderId = $this->getOption('id');
         $this->evalInt($orderId);
-        /* @var $order Mage_Sales_Model_Order */ $order = Mage::getModel('sales/order')->load($orderId);
+        /* @var $order Mage_Sales_Model_Order */
+        $order = Mage::getModel('sales/order')->load($orderId);
 
         if($order === null || $orderId != $order->getId()) {
             $this->line('No order found, aborting....');

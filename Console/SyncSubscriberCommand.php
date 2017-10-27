@@ -19,7 +19,8 @@ class Gracious_Interconnect_Console_SyncSubscriberCommand extends Gracious_Inter
         $subscriberId = $this->getOption('id');
         $this->evalInt($subscriberId);
         $this->line('$subscriberId : '.$subscriberId);
-        /* @var $subscriber Mage_Newsletter_Model_Subscriber */ $subscriber = Mage::getModel('newsletter/subscriber')->load($subscriberId);
+        /* @var $subscriber Mage_Newsletter_Model_Subscriber */
+        $subscriber = Mage::getModel('newsletter/subscriber')->load($subscriberId);
 
         if($subscriber === null || $subscriber->getId() !== $subscriberId) {
             $this->info('Subscriber not found, all done here ....');

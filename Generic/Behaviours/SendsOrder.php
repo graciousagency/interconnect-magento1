@@ -20,10 +20,6 @@ trait Gracious_Interconnect_Generic_Behaviours_SendsOrder {
             return;
         }
 
-        if (Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
-            Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . '=> Order data: ' . json_encode($requestData));
-        }
-
         // Using try/catch because we don't want this to interfere with critical logic (for example: crash the checkout so that orders can not be placed)
         try {
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_ORDER);

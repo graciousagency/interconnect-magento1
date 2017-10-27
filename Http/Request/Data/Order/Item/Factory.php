@@ -55,21 +55,21 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
         }
 
         return [
-            'emailAddress' => $order->getCustomerEmail(),
-            'orderId' => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
-            'itemId' => $this->generateEntityId($orderItem->getId(), Gracious_Interconnect_Support_EntityType::ORDER_ITEM),
-            'incrementId' => $order->getIncrementId(),
-            'productId' => $this->generateEntityId($product->getId(), Gracious_Interconnect_Support_EntityType::PRODUCT),
-            'productName' => $product->getName(),
-            'productSKU' => $product->getSku(),
-            'category' => $this->getCategoryNameByProduct($product),
-            'subCategory' => null,
-            'quantity' => (int)$orderItem->getQtyOrdered(),
-            'priceInCents' => Gracious_Interconnect_Support_PriceCents::create($product->getPrice())->toInt(),
+            'emailAddress'      => $order->getCustomerEmail(),
+            'orderId'           => $this->generateEntityId($order->getId(), Gracious_Interconnect_Support_EntityType::ORDER),
+            'itemId'            => $this->generateEntityId($orderItem->getId(), Gracious_Interconnect_Support_EntityType::ORDER_ITEM),
+            'incrementId'       => $order->getIncrementId(),
+            'productId'         => $this->generateEntityId($product->getId(), Gracious_Interconnect_Support_EntityType::PRODUCT),
+            'productName'       => $product->getName(),
+            'productSKU'        => $product->getSku(),
+            'category'          => $this->getCategoryNameByProduct($product),
+            'subCategory'       => null,
+            'quantity'          => (int)$orderItem->getQtyOrdered(),
+            'priceInCents'      => Gracious_Interconnect_Support_PriceCents::create($product->getPrice())->toInt(),
             'totalPriceInCents' => Gracious_Interconnect_Support_PriceCents::create($orderItem->getQtyOrdered() * $product->getPrice())->toInt(),
-            'orderedAtISO8601' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'productUrl' => $product->getProductUrl(),
-            'productImageUrl' => $imageUrl
+            'orderedAtISO8601'  => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'productUrl'        => $product->getProductUrl(),
+            'productImageUrl'   => $imageUrl
         ];
     }
 
