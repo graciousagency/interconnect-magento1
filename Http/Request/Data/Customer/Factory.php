@@ -12,10 +12,9 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
     public function setupData(Mage_Customer_Model_Customer $customer) {
         $prefix = $customer->getPrefix();
         $customerId = $customer->getId();
-        /* @var  $customerReflector Gracious_Interconnect_Reflection_CustomerReflector */
-        $customerReflector = new Gracious_Interconnect_Reflection_CustomerReflector();
         $customerEmail = $customer->getEmail();
-        $historicInfo = $customerReflector->getCustomerHistoricInfoByCustomer($customer);
+        $interconnectCustomer = new Gracious_Interconnect_Model_Customer($customerEmail, $customer);
+        $historicInfo = $interconnectCustomer->getHistoricInfo();
 
         return [
             'customerId' => $this->generateEntityId($customerId, Gracious_Interconnect_Support_EntityType::CUSTOMER),
@@ -45,9 +44,8 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
     public function setUpAnonymousCustomerDataFromOrder(Mage_Sales_Model_Order $order) {
         $billingAddress = $order->getBillingAddress();
         $shippingAddress = $order->getShippingAddress();
-        /* @var  $customerReflector Gracious_Interconnect_Reflection_CustomerReflector */
-        $customerReflector = new Gracious_Interconnect_Reflection_CustomerReflector();
-        $historicInfo = $customerReflector->getCustomerHistoricInfoByCustomerEmail($billingAddress->getEmail());
+        $interconnectCustomer = new Gracious_Interconnect_Model_Customer($billingAddress->getEmail());
+        $historicInfo = $interconnectCustomer->getHistoricInfo();
 
         return [
             'customerId' => null,

@@ -1,15 +1,26 @@
 <?php
+
 /**
- * Class Gracious_Interconnect_Reflection_OrderReflector
+ * Class Gracious_Interconnect_Model_Order
  */
-class Gracious_Interconnect_Reflection_OrderReflector {
+class Gracious_Interconnect_Model_Order {
+
     /**
-     * @param Mage_Sales_Model_Order $order
-     * @return string
+     * @var Mage_Sales_Model_Order
      */
-    public function getOrderPaymentStatus(Mage_Sales_Model_Order $order) {
-        $total = $order->getBaseGrandTotal();
-        $totalPaid = $order->getTotalPaid();
+    protected $order;
+
+    /**
+     * Gracious_Interconnect_Model_Order constructor.
+     * @param Mage_Sales_Model_Order $order
+     */
+    public function __construct(Mage_Sales_Model_Order $order) {
+        $this->order = $order;
+    }
+
+    public function getOrderPaymentStatus() {
+        $total = $this->order->getBaseGrandTotal();
+        $totalPaid = $this->order->getTotalPaid();
         $amountRemaining = $total - $totalPaid;
         $paymentStatus = null;
 

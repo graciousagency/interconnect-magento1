@@ -28,7 +28,6 @@ module should look like this:
                         /Http
                         /Model
                         /Observer
-                        /Reflection
                         /Reporting
                         /shell
                         /Support
