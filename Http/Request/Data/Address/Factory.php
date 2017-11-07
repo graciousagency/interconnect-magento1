@@ -21,7 +21,8 @@ class Gracious_Interconnect_Http_Request_Data_Address_Factory extends Gracious_I
             'zipcode'       => $address->getPostcode(),
             'city'          => $address->getCity(),
             'country'       => $address->getCountryId(),
-            'company'       => $address->getCompany()
+            'company'       => $address->getCompany(),
+            'telephone'    => $address->getTelephone()
         ];
     }
 }
