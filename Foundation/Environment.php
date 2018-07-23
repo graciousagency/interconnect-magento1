@@ -142,13 +142,4 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable {
 
         return $data->{$key};
     }
-
-
-    /**
-     * @return bool
-     */
-    public static function isInDeveloperMode() {
-        // Unfortunately there developer mode has to be set programmatically in Magento 1 so Mage::getIsDeveloperMode() always returns false
-        return getenv('GS_ENV') != 'production';
-    }
 }

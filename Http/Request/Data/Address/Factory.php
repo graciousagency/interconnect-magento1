@@ -16,12 +16,12 @@ class Gracious_Interconnect_Http_Request_Data_Address_Factory extends Gracious_I
         $street = is_array($street) ? implode(' ', $street) : $street;
 
         return [
-            'addressId' => $uniqueId,
-            'street' => $street,
-            'zipcode' => $address->getPostcode(),
-            'city' => $address->getCity(),
-            'country' => $address->getCountryId(),
-            'company' => $address->getCompany()
+            'addressId'     => $uniqueId,
+            'street'        => $street,
+            'zipcode'       => $address->getPostcode(),
+            'city'          => $address->getCity(),
+            'country'       => $address->getCountryId(),
+            'company'       => $address->getCompany()
         ];
     }
 }

@@ -49,9 +49,8 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
      * @return string
      */
     protected function getPaymentStatus(Mage_Sales_Model_Order $order) {
-        /* @var $orderReflector Gracious_Interconnect_Reflection_OrderReflector */
-        $orderReflector = new Gracious_Interconnect_Reflection_OrderReflector();
-        $paymentStatus = $orderReflector->getOrderPaymentStatus($order);
+        $interconnectOrder = new Gracious_Interconnect_Model_Order($order);
+        $paymentStatus = $interconnectOrder->getOrderPaymentStatus();
 
         return ucwords(Gracious_Interconnect_Support_Text_Inflector::unSnakeCase($paymentStatus));
     }

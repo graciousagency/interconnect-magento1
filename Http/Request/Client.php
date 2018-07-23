@@ -58,7 +58,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             throw new Gracious_Interconnect_System_Exception('Unable to make request: base url not set');
         }
 
-        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
+        if(Mage::getIsDeveloperMode()) {
             // Overcome ssl problems on local machine
             Gracious_Interconnect_Reporting_Log::notice(__METHOD__.'=> Local machine; disabling ssl checks...');
             $curlAdapter = new Zend_Http_Client_Adapter_Curl();
@@ -83,7 +83,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             ])
             ->setRawData($json);
 
-        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
+        if(Mage::getIsDeveloperMode()) {
             Gracious_Interconnect_Reporting_Log::debug(str_repeat('*****', 30));
             Gracious_Interconnect_Reporting_Log::debug(__METHOD__ . ':: Posting to \'' . $this->baseUrl . '/' . $endPoint . '\'. Data = ' . $json);
         }
@@ -107,7 +107,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             throw new Gracious_Interconnect_System_Exception('Error making request to \'' . $this->getUri(true) . '\' with http status code :' . $statusCode . ' and response ' . (string)$response);
         }
 
-        if(Gracious_Interconnect_Foundation_Environment::isInDeveloperMode()) {
+        if(Mage::getIsDeveloperMode()) {
             Gracious_Interconnect_Reporting_Log::info('Data sent to: '.$this->getUri(true) .'. All done here...');
         }
     }
