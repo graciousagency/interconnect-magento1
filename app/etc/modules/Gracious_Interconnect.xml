@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gracious_Interconnect>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Gracious_Interconnect>
+    </modules>
+</config>

@@ -5,9 +5,9 @@ is Copernica. More consumers will be connected in the future.
 Event data is automatically channeled to the web service but the module also comes with 3 console commands to 
 synchronize data manually. These console commands can be run from the shell folder of this module 
 (app/code/local/Gracious/Interconnect/shell):
-- 'php sync_customer.php' :     Synchronizes a customer by providing the --id={customerId} parameter
-- 'php sync_order.php' :        Synchronizes an order by providing the --id={orderId} parameter
-- 'php sync_subscriber.php' :   Synchronizes a subscriber by providing the --id={subscriberId} parameter
+- `php sync_customer.php` :     Synchronizes a customer by providing the --id={customerId} parameter
+- `php sync_order.php` :        Synchronizes an order by providing the --id={orderId} parameter
+- `php sync_subscriber.php` :   Synchronizes a subscriber by providing the --id={subscriberId} parameter
 
 **To get the module up and running:**
 - Create a folder /Gracious/Interconnect under app/local.

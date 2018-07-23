@@ -1,5 +1,4 @@
 <?php
-require_once(Mage::getModuleDir('controllers', 'Mage_Newsletter') . DS . 'SubscriberController.php');
 
 /**
  * Class Gracious_Interconnect_Newsletter_SubscriberController

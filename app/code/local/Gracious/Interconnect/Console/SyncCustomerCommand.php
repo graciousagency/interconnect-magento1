@@ -1,5 +1,4 @@
 <?php
-require_once(__DIR__ . '/CommandAbstract.php');
 
 /**
  * Class Gracious_Interconnect_Console_SyncCustomerCommand
