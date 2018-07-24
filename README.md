@@ -59,5 +59,5 @@ context menu on the left. You will be presented with a form with the following f
 - Now click 'Save Config' in the top right corner. The module is now configured.
 
 In order to use this module completely you will need to have an account for the Gracious Interconnect webservice. 
-Please contact info@graciousstudios.nl for more information, further integrations and other possibilities. Use 
+Please contact info@gracious.nl for more information, further integrations and other possibilities. Use 
 'Interconnect' for your email subject.
