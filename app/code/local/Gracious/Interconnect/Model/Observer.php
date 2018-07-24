@@ -3,6 +3,11 @@
 class Gracious_Interconnect_Model_Observer
 {
 
+    /**
+     * Dispatch a custom event before a specific controller action
+     *
+     * @param $observer
+     */
     public function controllerActionPreDispatch($observer)
     {
         $fullActionName = $observer->getEvent()->getControllerAction()->getFullActionName();
@@ -12,6 +17,11 @@ class Gracious_Interconnect_Model_Observer
         }
     }
 
+    /**
+     * Dispatch a custom event after a specific controller action
+     *
+     * @param $observer
+     */
     public function controllerActionPostDispatch($observer)
     {
         $fullActionName = $observer->getEvent()->getControllerAction()->getFullActionName();
@@ -21,6 +31,11 @@ class Gracious_Interconnect_Model_Observer
         }
     }
 
+    /**
+     * Send subscriber to Interconnect on Newsletter subscribe after event
+     *
+     * @param $observer
+     */
     public function newsletterSubscribeAfter($observer)
     {
 
