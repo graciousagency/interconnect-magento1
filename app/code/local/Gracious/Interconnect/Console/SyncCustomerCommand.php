@@ -1,5 +1,7 @@
 <?php
 
+require_once(getcwd() . '/app/code/local/Gracious/Interconnect/Console/CommandAbstract.php');
+
 /**
  * Class Gracious_Interconnect_Console_SyncCustomerCommand
  */

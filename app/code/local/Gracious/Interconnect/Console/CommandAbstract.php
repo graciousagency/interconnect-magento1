@@ -1,5 +1,7 @@
 <?php
 
+require_once(getcwd() . '/shell/abstract.php');
+
 /**
  * Class Gracious_Interconnect_Console_CommandAbstract
  */
