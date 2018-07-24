@@ -1,4 +1,4 @@
-The Gracious Studios Interconnect module for Magento 1 channels event data to the Gracious Interconnect webservice 
+The Gracious Interconnect module for Magento 1 channels event data to the Gracious Interconnect webservice 
 which in turn formats the data and proxies it to connected consumer services. At this point the only connected consumer
 is Copernica. More consumers will be connected in the future.
 
@@ -54,7 +54,7 @@ context menu on the left. You will be presented with a form with the following f
     - Base Url: enter the url for the Interconnect webservice here (Provided by Gracious Studios).
     - Prefix: enter a prefix for your application. Let's say you web shop is called 'ProShop'; your prefix could be 
     'PS' for example. 
-    - Api Key: Enter your api key for the Interconnect webservice (Provided by Gracious Studios). This is required for 
+    - Api Key: Enter your api key for the Interconnect webservice (Provided by Gracious). This is required for 
     authentication.
 - Now click 'Save Config' in the top right corner. The module is now configured.
 
