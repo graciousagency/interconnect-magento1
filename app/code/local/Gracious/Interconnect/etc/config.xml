@@ -6,12 +6,41 @@
         </Gracious_Interconnect>
     </modules>
     <global>
+        <models>
+            <interconnect>
+                <class>Gracious_Interconnect_Model</class>
+            </interconnect>
+        </models>
         <helpers>
             <gracious_interconnect>
                 <class>Gracious_Interconnect_Helper</class>
             </gracious_interconnect>
         </helpers>
         <events>
+            <controller_action_predispatch>
+                <observers>
+                    <controller_action_before>
+                        <class>interconnect/observer</class>
+                        <method>controllerActionPreDispatch</method>
+                    </controller_action_before>
+                </observers>
+            </controller_action_predispatch>
+            <controller_action_postdispatch>
+                <observers>
+                    <controller_action_after>
+                        <class>interconnect/observer</class>
+                        <method>controllerActionPostDispatch</method>
+                    </controller_action_after>
+                </observers>
+            </controller_action_postdispatch>
+            <newsletter_subscribe_after>
+                <observers>
+                    <newsletter_subscribe_after>
+                        <class>interconnect/observer</class>
+                        <method>newsletterSubscribeAfter</method>
+                    </newsletter_subscribe_after>
+                </observers>
+            </newsletter_subscribe_after>
             <customer_register_success>
                 <observers>
                     <customer_register_success_observer>
