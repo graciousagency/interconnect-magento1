@@ -2,7 +2,6 @@ app/code/local/Gracious/Interconnect/Console/CommandAbstract.php                
 app/code/local/Gracious/Interconnect/Console/SyncCustomerCommand.php                                            app/code/local/Gracious/Interconnect/Console/SyncCustomerCommand.php
 app/code/local/Gracious/Interconnect/Console/SyncOrderCommand.php                                               app/code/local/Gracious/Interconnect/Console/SyncOrderCommand.php
 app/code/local/Gracious/Interconnect/Console/SyncSubscriberCommand.php                                          app/code/local/Gracious/Interconnect/Console/SyncSubscriberCommand.php
-app/code/local/Gracious/Interconnect/controllers/Newsletter/SubscriberController.php                            app/code/local/Gracious/Interconnect/controllers/Newsletter/SubscriberController.php
 app/code/local/Gracious/Interconnect/etc/system.xml                                                             app/code/local/Gracious/Interconnect/etc/system.xml
 app/code/local/Gracious/Interconnect/etc/config.xml                                                             app/code/local/Gracious/Interconnect/etc/config.xml
 app/code/local/Gracious/Interconnect/etc/adminhtml.xml                                                          app/code/local/Gracious/Interconnect/etc/adminhtml.xml
@@ -20,6 +19,7 @@ app/code/local/Gracious/Interconnect/Http/Request/Data/Subscriber/Factory.php   
 app/code/local/Gracious/Interconnect/Model/CustomerHistoricInfo.php                                             app/code/local/Gracious/Interconnect/Model/CustomerHistoricInfo.php
 app/code/local/Gracious/Interconnect/Model/Order.php                                                            app/code/local/Gracious/Interconnect/Model/Order.php
 app/code/local/Gracious/Interconnect/Model/Customer.php                                                         app/code/local/Gracious/Interconnect/Model/Customer.php
+app/code/local/Gracious/Interconnect/Model/Observer.php                                                         app/code/local/Gracious/Interconnect/Model/Observer.php
 app/code/local/Gracious/Interconnect/Observer/CheckoutOnePageControllerSuccessActionEventObserver.php           app/code/local/Gracious/Interconnect/Observer/CheckoutOnePageControllerSuccessActionEventObserver.php
 app/code/local/Gracious/Interconnect/Observer/CustomerRegisterSuccessEventObserver.php                          app/code/local/Gracious/Interconnect/Observer/CustomerRegisterSuccessEventObserver.php
 app/code/local/Gracious/Interconnect/Observer/ObserverAbstract.php                                              app/code/local/Gracious/Interconnect/Observer/ObserverAbstract.php
@@ -34,6 +34,6 @@ app/code/local/Gracious/Interconnect/Support/PaymentStatus.php                  
 app/code/local/Gracious/Interconnect/System/Exception.php                                                       app/code/local/Gracious/Interconnect/System/Exception.php
 app/code/local/Gracious/Interconnect/System/InvalidArgumentException.php                                        app/code/local/Gracious/Interconnect/System/InvalidArgumentException.php
 app/etc/modules/Gracious_Interconnect.xml                                                                       app/etc/modules/Gracious_Interconnect.xml
-shell/sync_customer.php                                                                                         shell/sync_customer.php
-shell/sync_order.php                                                                                            shell/sync_order.php
-shell/sync_subscriber.php                                                                                       shell/sync_subscriber.php
+shell/gracious_interconnect_sync_customer.php                                                                   shell/gracious_interconnect_sync_customer.php
+shell/gracious_interconnect_sync_order.php                                                                      shell/gracious_interconnect_sync_order.php
+shell/gracious_interconnect_sync_subscriber.php                                                                 shell/gracious_interconnect_sync_subscriber.php
