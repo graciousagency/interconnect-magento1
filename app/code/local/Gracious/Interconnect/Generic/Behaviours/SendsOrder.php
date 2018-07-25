@@ -3,13 +3,15 @@
 /**
  * Trait Gracious_Interconnect_Generic_Behaviours_SendsOrder
  */
-trait Gracious_Interconnect_Generic_Behaviours_SendsOrder {
+trait Gracious_Interconnect_Generic_Behaviours_SendsOrder
+{
 
     /**
-     * @param Mage_Sales_Model_Order $order
+     * @param Mage_Sales_Model_Order                    $order
      * @param Gracious_Interconnect_Http_Request_Client $client
      */
-    public function sendOrder(Mage_Sales_Model_Order $order, Gracious_Interconnect_Http_Request_Client $client) {
+    public function sendOrder(Mage_Sales_Model_Order $order, Gracious_Interconnect_Http_Request_Client $client)
+    {
         $orderDataFactory = new Gracious_Interconnect_Http_Request_Data_Order_Factory();
 
         try {
