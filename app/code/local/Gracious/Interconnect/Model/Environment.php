@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Gracious_Interconnect_Foundation_Environment
+ * Class Gracious_Interconnect_Model_Environment
  */
-class Gracious_Interconnect_Foundation_Environment implements JsonSerializable
+class Gracious_Interconnect_Model_Environment implements JsonSerializable
 {
 
     /**
@@ -22,7 +22,7 @@ class Gracious_Interconnect_Foundation_Environment implements JsonSerializable
     protected $domain;
 
     /**
-     * Gracious_Interconnect_Foundation_Environment constructor.
+     * Gracious_Interconnect_Model_Environment constructor.
      */
     private function __construct()
     {
