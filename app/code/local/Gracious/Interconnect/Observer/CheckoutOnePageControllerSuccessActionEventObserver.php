@@ -13,7 +13,7 @@ class Gracious_Interconnect_Observer_CheckoutOnePageControllerSuccessActionEvent
      * @param Varien_Event_Observer $observer
      */
     public function execute(Varien_Event_Observer $observer) {
-        if (!Mage::helper('gracious/config')->isComplete()) {
+        if (!Mage::helper('interconnect/config')->isComplete()) {
             Mage::helper('interconnect/log')->alert(__METHOD__ . '=> Unable to send data; the module\'s config values are not configured in the backend. Aborting....');
 
             return;
