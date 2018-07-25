@@ -1,16 +1,33 @@
 {
     "name": "gracious/interconnect-magento1",
-    "description": "Webhook module for Magento1 that channels data to the Gracious Interconnect webservice which in turn formats and proxies the data to connected consumer services",
-    "type": "magento1-module",
-    "version": "1.0.0",
+    "description": "Webhook module for Magento 1 that channels data to the Gracious Interconnect webservice which in turn formats and proxies the data to connected consumer services",
+    "type": "magento-module",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "Justin van Schaick",
-            "email": "justin@graciousstudios.nl"
+            "email": "j.vanschaick@gracious.nl"
+        },
+        {
+            "name": "Suraj Sanchit",
+            "email": "s.sanchit@gracious.nl"
         }
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "apcu-autoloader": true,
+        "notify-on-install": false,
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "extra": {
+        "magento-root-dir": "."
     }
 }
