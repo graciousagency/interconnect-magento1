@@ -19,7 +19,6 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
 
             if ($product !== null) { // Redundancy (Could $product be null?)
                 $productTypeId = $product->getTypeId();
-//                Mage::log('$productTypeId : '.$productTypeId);
 
                 switch ($productTypeId) {
                     case Mage_Catalog_Model_Product_Type::TYPE_SIMPLE:

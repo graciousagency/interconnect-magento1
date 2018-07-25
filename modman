@@ -18,6 +18,7 @@ app/code/local/Gracious/Interconnect/Http/Request/Data/Address/Factory.php      
 app/code/local/Gracious/Interconnect/Http/Request/Data/Customer/Factory.php                                 app/code/local/Gracious/Interconnect/Http/Request/Data/Customer/Factory.php
 app/code/local/Gracious/Interconnect/Http/Request/Data/FactoryAbstract.php                                  app/code/local/Gracious/Interconnect/Http/Request/Data/FactoryAbstract.php
 app/code/local/Gracious/Interconnect/Http/Request/Data/Order/Factory.php                                    app/code/local/Gracious/Interconnect/Http/Request/Data/Order/Factory.php
+app/code/local/Gracious/Interconnect/Http/Request/Data/Order/Item/Factory.php                               app/code/local/Gracious/Interconnect/Http/Request/Data/Order/Item/Factory.php
 app/code/local/Gracious/Interconnect/Http/Request/Data/Subscriber/Factory.php                               app/code/local/Gracious/Interconnect/Http/Request/Data/Subscriber/Factory.php
 
 app/code/local/Gracious/Interconnect/Model/Customer.php                                                     app/code/local/Gracious/Interconnect/Model/Customer.php
