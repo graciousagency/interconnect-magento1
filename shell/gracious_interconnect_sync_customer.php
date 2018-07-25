@@ -11,13 +11,13 @@ class Gracious_Interconnect_Console_SyncCustomerCommand extends Gracious_Interco
      * {@inheritdoc}
      */
     public function run() {
-        if (!$this->config->isComplete()) {
+        if (!Mage::helper('interconnect/config')->isComplete()) {
             $this->error(__METHOD__ . ' :: Unable to rock and roll: module config values not configured (completely) in the backend. Aborting....');
 
             return;
         }
 
-        $customerId = $this->getOption('id');
+        $customerId = $this->getArg('id');
         $this->evalInt($customerId);
 
         /* @var $customer Mage_Customer_Model_Customer */

@@ -19,7 +19,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
         return [
             'customerId' => $this->generateEntityId($customerId, Gracious_Interconnect_Support_EntityType::CUSTOMER),
             'firstName' => $customer->getFirstname(),
-            'lastName' => Gracious_Interconnect_Support_Formatter::prefixLastName($customer->getLastname(), $prefix),
+            'lastName' => Mage::helper('interconnect/formatter')->prefixLastName($customer->getLastname(), $prefix),
             'emailAddress' => $customerEmail,
             'gender' => $customer->getGender(),
             'birthDate' => $customer->getDob(),
@@ -29,11 +29,11 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
             'isAnonymous' => false,
             'totalOrderCount' => (int)$historicInfo->getTotalOrderCount(),
             'totalOrderAmount' => Gracious_Interconnect_Support_PriceCents::create($historicInfo->getTotalOrderAmount())->toInt(),
-            'firstOrderDate' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($historicInfo->getFirstOrderDate()),
-            'lastOrderDate' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($historicInfo->getLastOrderDate()),
-            'registrationDate' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($historicInfo->getRegistrationDate()),
-            'createdAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($customer->getCreatedAt()),
-            'updatedAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($customer->getUpdatedAt())
+            'firstOrderDate' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($historicInfo->getFirstOrderDate()),
+            'lastOrderDate' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($historicInfo->getLastOrderDate()),
+            'registrationDate' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($historicInfo->getRegistrationDate()),
+            'createdAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($customer->getCreatedAt()),
+            'updatedAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($customer->getUpdatedAt())
         ];
     }
 
@@ -50,7 +50,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
         return [
             'customerId' => null,
             'firstName' => $billingAddress->getFirstname(),
-            'lastName' => Gracious_Interconnect_Support_Formatter::prefixLastName($billingAddress->getLastname(), $billingAddress->getPrefix()),
+            'lastName' => Mage::helper('interconnect/formatter')->prefixLastName($billingAddress->getLastname(), $billingAddress->getPrefix()),
             'emailAddress' => $billingAddress->getEmail(),
             'gender' => null,
             'birthDate' => null,
@@ -60,11 +60,11 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
             'isAnonymous' => true,
             'totalOrderCount' => (int)$historicInfo->getTotalOrderCount(),
             'totalOrderAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($historicInfo->getTotalOrderAmount())->toInt(),
-            'firstOrderDate' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($historicInfo->getFirstOrderDate()),
-            'lastOrderDate' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($historicInfo->getLastOrderDate()),
+            'firstOrderDate' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($historicInfo->getFirstOrderDate()),
+            'lastOrderDate' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($historicInfo->getLastOrderDate()),
             'registrationDate' => null,
-            'createdAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'updatedAt' => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt())
+            'createdAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
+            'updatedAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getUpdatedAt())
         ];
     }
 

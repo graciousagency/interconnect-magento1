@@ -11,13 +11,13 @@ class Gracious_Interconnect_Console_SyncOrderCommand extends Gracious_Interconne
      * {@inheritdoc}
      */
     public function run() {
-        if (!$this->config->isComplete()) {
+        if (!Mage::helper('interconnect/config')->isComplete()) {
             $this->line(__METHOD__ . ' :: Unable to rock and roll: module config values not configured (completely) in the backend. Aborting....');
 
             return;
         }
 
-        $orderId = $this->getOption('id');
+        $orderId = $this->getArg('id');
         $this->evalInt($orderId);
         /* @var $order Mage_Sales_Model_Order */
         $order = Mage::getModel('sales/order')->load($orderId);

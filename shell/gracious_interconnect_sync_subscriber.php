@@ -11,13 +11,13 @@ class Gracious_Interconnect_Console_SyncSubscriberCommand extends Gracious_Inter
      * {@inheritdoc}
      */
     public function run(){
-        if(!$this->config->isComplete()) {
+        if(!Mage::helper('interconnect/config')->isComplete()) {
             $this->error(__METHOD__.' :: Unable to rock and roll: module config values not configured (completely) in the backend. Aborting....');
 
             return;
         }
 
-        $subscriberId = $this->getOption('id');
+        $subscriberId = $this->getArg('id');
         $this->evalInt($subscriberId);
         $this->line('$subscriberId : '.$subscriberId);
         /* @var $subscriber Mage_Newsletter_Model_Subscriber */

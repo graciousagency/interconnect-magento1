@@ -3,14 +3,14 @@
 /**
  * Class Gracious_Interconnect_Model_CustomerRegisterSuccessEventObserver
  */
-class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver extends Gracious_Interconnect_Observer_ObserverAbstract {
+class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver {
 
     /**
      * @param Varien_Event_Observer $observer
      */
     public function execute(Varien_Event_Observer $observer) {
-        if (!$this->config->isComplete()) {
-            Gracious_Interconnect_Reporting_Log::alert(__METHOD__ . '=> Unable to send data; the module\'s config values are not configured in the backend. Aborting....');
+        if (!Mage::helper('gracious/config')->isComplete()) {
+            Mage::helper('interconnect/log')->alert(__METHOD__ . '=> Unable to send data; the module\'s config values are not configured in the backend. Aborting....');
 
             return;
         }
@@ -23,7 +23,7 @@ class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver extend
         try {
             $requestData = $customerDataFactory->setupData($customer);
         } catch (Throwable $exception) {
-            Gracious_Interconnect_Reporting_Log::exception($exception);
+            Mage::helper('interconnect/log')->exception($exception);
 
             return;
         }
@@ -33,11 +33,11 @@ class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver extend
             $client = new Gracious_Interconnect_Http_Request_Client();
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_CUSTOMER);
         } catch (Throwable $exception) {
-            Gracious_Interconnect_Reporting_Log::exception($exception);
+            Mage::helper('interconnect/log')->exception($exception);
 
             return;
         }
 
-        Gracious_Interconnect_Reporting_Log::info(__METHOD__ . '=> Customer sent to Interconnect (' . $customer->getId() . ')');
+        Mage::helper('interconnect/log')->info(__METHOD__ . '=> Customer sent to Interconnect (' . $customer->getId() . ')');
     }
 }

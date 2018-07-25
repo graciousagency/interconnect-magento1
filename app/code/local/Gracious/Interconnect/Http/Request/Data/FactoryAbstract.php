@@ -14,7 +14,7 @@ abstract class Gracious_Interconnect_Http_Request_Data_FactoryAbstract {
      * FactoryAbstract constructor.
      */
     public function __construct() {
-        $this->config = Mage::helper('gracious_interconnect/config');
+        $this->config = Mage::helper('interconnect/config');
     }
 
     /**
@@ -43,6 +43,6 @@ abstract class Gracious_Interconnect_Http_Request_Data_FactoryAbstract {
             throw new Gracious_Interconnect_System_Exception('Unable to format prefixed ID: Interconnect handle not set!');
         }
 
-        return Gracious_Interconnect_Support_Formatter::prefixID($id, $entityPrefix, $prefix);
+        return Mage::helper('interconnect/formatter')->prefixID($id, $entityPrefix, $prefix);
     }
 }

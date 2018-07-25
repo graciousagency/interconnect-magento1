@@ -37,9 +37,9 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
             'paymentMethod'         => $paymentMethod,
             'emailAddress'          => $order->getCustomerEmail(),
             'customer'              => $this->getOrderCustomerData($order),
-            'orderedAtISO8601'      => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'updatedAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
-            'createdAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'orderedAtISO8601'      => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
+            'updatedAt'             => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getUpdatedAt()),
+            'createdAt'             => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
             'items'                 => $orderItemFactory->setupData($order)
         ];
     }
