@@ -7,47 +7,10 @@ require_once(getcwd() . '/shell/abstract.php');
  */
 abstract class Gracious_Interconnect_Console_CommandAbstract extends Mage_Shell_Abstract {
 
-    /**
-     * @var Gracious_Interconnect_Helper_Config
-     */
-    protected $config;
-
-    /**
-     * @var string[]
-     */
-    private $options = [];
-
-
     public function __construct() {
         parent::__construct();
 
-        $this->parseOptions();
-        $this->config = Mage::helper('gracious_interconnect/config');
-
         return $this;
-    }
-
-    protected final function parseOptions() {
-        $current = null;
-
-        foreach ($_SERVER['argv'] as $arg) {
-            $matches = [];
-
-            if (preg_match('/^\-\-([a-zA-Z]+[a-zA-Z0-9_\-]*)=(.+)$/', $arg, $matches)) {
-                if (count($matches) === 3) {
-                    $this->options[$matches[1]] = $matches[2];
-                }
-            }
-        }
-    }
-
-    /**
-     * @param string $key
-     * @param null $defaultValue
-     * @return null|string
-     */
-    protected function getOption($key, $defaultValue = null) {
-        return isset($this->options[$key]) ? $this->options[$key] : $defaultValue;
     }
 
     /**
@@ -67,28 +30,7 @@ abstract class Gracious_Interconnect_Console_CommandAbstract extends Mage_Shell_
     /**
      * @param string $message
      */
-    protected final function notice($message) {
-        $this->write($message, 33);
-    }
-
-    /**
-     * @param string $message
-     */
     protected final function error($message) {
-        $this->write($message, 31);
-    }
-
-    /**
-     * @param string $message
-     */
-    protected final function alert($message) {
-        $this->write($message, 31);
-    }
-
-    /**
-     * @param string $message
-     */
-    protected final function emergency($message) {
         $this->write($message, 31);
     }
 
@@ -106,7 +48,7 @@ abstract class Gracious_Interconnect_Console_CommandAbstract extends Mage_Shell_
      * @throws Gracious_Interconnect_System_Exception
      */
     protected function evalInt($value) {
-        if (!is_int($value)) {
+        if (!is_numeric($value)) {
             throw new Gracious_Interconnect_System_Exception('Expected integer but got ' . gettype($value));
         }
     }

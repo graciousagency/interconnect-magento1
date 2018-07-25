@@ -19,7 +19,6 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
 
             if ($product !== null) { // Redundancy (Could $product be null?)
                 $productTypeId = $product->getTypeId();
-//                Mage::log('$productTypeId : '.$productTypeId);
 
                 switch ($productTypeId) {
                     case Mage_Catalog_Model_Product_Type::TYPE_SIMPLE:
@@ -49,7 +48,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
             $imageUrl = (string)$imageHelper->init($product, 'image');
         } catch (Exception $exception) {
             // Always log in case something else is going on.
-            Gracious_Interconnect_Reporting_Log::exception($exception);
+            Mage::helper('interconnect/log')->exception($exception);
 
             $imageUrl = null;
         }
@@ -67,7 +66,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
             'quantity'          => (int)$orderItem->getQtyOrdered(),
             'priceInCents'      => Gracious_Interconnect_Support_PriceCents::create($product->getPrice())->toInt(),
             'totalPriceInCents' => Gracious_Interconnect_Support_PriceCents::create($orderItem->getQtyOrdered() * $product->getPrice())->toInt(),
-            'orderedAtISO8601'  => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'orderedAtISO8601'  => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
             'productUrl'        => $product->getProductUrl(),
             'productImageUrl'   => $imageUrl
         ];

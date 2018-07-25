@@ -20,8 +20,8 @@ class Gracious_Interconnect_Http_Request_Data_Subscriber_Factory extends Graciou
             'subscriptionId'    => $prefixedSubscriberId,
             'emailAddress'      => $subscriber->getEmail(),
             'optIn'             => $subscriber->isSubscribed(),
-            'createdAt'         => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($createdAt),
-            'updatedAt'         => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($updatedAt)
+            'createdAt'         => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($createdAt),
+            'updatedAt'         => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($updatedAt)
         ];
     }
 }

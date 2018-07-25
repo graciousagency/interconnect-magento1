@@ -23,7 +23,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
      * Client constructor.
      */
     public function __construct() {
-        $this->helperConfig = Mage::helper('gracious_interconnect/config');
+        $this->helperConfig = Mage::helper('interconnect/config');
         $this->setBaseUrl($this->helperConfig->getInterconnectServiceBaseUrl());
 
         parent::__construct(null, null);
@@ -60,7 +60,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
 
         if(Mage::getIsDeveloperMode()) {
             // Overcome ssl problems on local machine
-            Gracious_Interconnect_Helper_Log::notice(__METHOD__.'=> Local machine; disabling ssl checks...');
+            Mage::helper('interconnect/log')->notice(__METHOD__.'=> Local machine; disabling ssl checks...');
             $curlAdapter = new Zend_Http_Client_Adapter_Curl();
             $curlAdapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
             $curlAdapter->setCurlOption(CURLOPT_SSL_VERIFYHOST, false);
@@ -82,8 +82,8 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             ->setRawData($json);
 
         if(Mage::getIsDeveloperMode()) {
-            Gracious_Interconnect_Helper_Log::debug(str_repeat('*****', 30));
-            Gracious_Interconnect_Helper_Log::debug(__METHOD__ . ':: Posting to \'' . $this->baseUrl . '/' . $endPoint . '\'. Data = ' . $json);
+            Mage::helper('interconnect/log')->debug(str_repeat('*****', 30));
+            Mage::helper('interconnect/log')->debug(__METHOD__ . ':: Posting to \'' . $this->baseUrl . '/' . $endPoint . '\'. Data = ' . $json);
         }
 
         $response = $this->request();
@@ -100,13 +100,13 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
         $success = ($statusCode == 200);
 
         if (!$success) {
-            Gracious_Interconnect_Helper_Log::alert('Response status = ' . $statusCode . ', response = ' . (string)$response);
+            Mage::helper('interconnect/log')->alert('Response status = ' . $statusCode . ', response = ' . (string)$response);
 
             throw new Gracious_Interconnect_System_Exception('Error making request to \'' . $this->getUri(true) . '\' with http status code :' . $statusCode . ' and response ' . (string)$response);
         }
 
         if(Mage::getIsDeveloperMode()) {
-            Gracious_Interconnect_Helper_Log::info('Data sent to: '.$this->getUri(true) .'. All done here...');
+            Mage::helper('interconnect/log')->info('Data sent to: '.$this->getUri(true) .'. All done here...');
         }
     }
 }

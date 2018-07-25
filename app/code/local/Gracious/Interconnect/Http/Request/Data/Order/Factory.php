@@ -13,7 +13,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         $quoteId = $order->getQuoteId();
         $prefixedQuoteId = $quoteId !== null ? $this->generateEntityId($quoteId, Gracious_Interconnect_Support_EntityType::QUOTE) : null;
         $orderItemFactory = new Gracious_Interconnect_Http_Request_Data_Order_Item_Factory();
-        $paymentMethod = Gracious_Interconnect_Support_Formatter::unSnakeCase($order->getPayment()->getMethod());
+        $paymentMethod = Mage::helper('interconnect/formatter')->unSnakeCase($order->getPayment()->getMethod());
         $paymentMethod = ucwords($paymentMethod);
         $total = $order->getGrandTotal();
         $discountAmount = $order->getDiscountAmount();
@@ -37,9 +37,9 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
             'paymentMethod'         => $paymentMethod,
             'emailAddress'          => $order->getCustomerEmail(),
             'customer'              => $this->getOrderCustomerData($order),
-            'orderedAtISO8601'      => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
-            'updatedAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getUpdatedAt()),
-            'createdAt'             => Gracious_Interconnect_Support_Formatter::formatDateStringToIso8601($order->getCreatedAt()),
+            'orderedAtISO8601'      => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
+            'updatedAt'             => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getUpdatedAt()),
+            'createdAt'             => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($order->getCreatedAt()),
             'items'                 => $orderItemFactory->setupData($order)
         ];
     }
@@ -52,7 +52,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         $interconnectOrder = new Gracious_Interconnect_Model_Order($order);
         $paymentStatus = $interconnectOrder->getOrderPaymentStatus();
 
-        return ucwords(Gracious_Interconnect_Support_Formatter::unSnakeCase($paymentStatus));
+        return ucwords(Mage::helper('interconnect/formatter')->unSnakeCase($paymentStatus));
     }
 
     /**

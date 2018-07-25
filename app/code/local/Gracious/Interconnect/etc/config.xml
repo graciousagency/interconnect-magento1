@@ -12,9 +12,14 @@
             </interconnect>
         </models>
         <helpers>
-            <gracious_interconnect>
+            <interconnect>
                 <class>Gracious_Interconnect_Helper</class>
-            </gracious_interconnect>
+            </interconnect>
+        </helpers>
+        <helpers>
+            <Gracious_Interconnect>
+                <class>Gracious_Interconnect_Helper</class>
+            </Gracious_Interconnect>
         </helpers>
         <events>
             <controller_action_predispatch>

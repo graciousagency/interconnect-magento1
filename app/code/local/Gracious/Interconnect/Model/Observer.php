@@ -65,7 +65,7 @@ class Gracious_Interconnect_Model_Observer
 
             return $subscriber;
         } catch (Exception $exception) {
-            Gracious_Interconnect_Reporting_Log::exception($exception);
+            Mage::helper('interconnect/log')->exception($exception);
         }
 
         return null;
@@ -88,7 +88,7 @@ class Gracious_Interconnect_Model_Observer
             $client = new Gracious_Interconnect_Http_Request_Client();
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_NEWSLETTER_SUBSCRIBER);
         } catch (Exception $exception) {
-            Gracious_Interconnect_Reporting_Log::exception($exception);
+            Mage::helper('interconnect/log')->exception($exception);
         }
     }
 

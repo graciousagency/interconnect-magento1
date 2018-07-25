@@ -6,8 +6,7 @@
  * @package Gracious\Interconnect\Model
  * Provides historic information about a customer
  */
-class Gracious_Interconnect_Model_CustomerHistoricInfo
-    implements JsonSerializable
+class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializable
 {
 
     /**

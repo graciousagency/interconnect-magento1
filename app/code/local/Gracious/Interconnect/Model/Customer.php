@@ -43,7 +43,7 @@ class Gracious_Interconnect_Model_Customer {
             } catch (Exception $exception) {
                 // pfff, Magento throws an exception if it can't find the customer instead of just returning null.
                 // Log it anyway because there could be something else going on.
-                Gracious_Interconnect_Reporting_Log::exception($exception);
+                Mage::helper('interconnect/log')->exception($exception);
                 $customer = null;
             }
 
