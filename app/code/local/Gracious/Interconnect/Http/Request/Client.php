@@ -23,7 +23,7 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
      * Client constructor.
      */
     public function __construct() {
-        $this->helperConfig = Mage::helper('gracious_interconnect/config');
+        $this->helperConfig = Mage::helper('interconnect/config');
         $this->setBaseUrl($this->helperConfig->getInterconnectServiceBaseUrl());
 
         parent::__construct(null, null);
