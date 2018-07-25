@@ -22,9 +22,9 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
 //                Mage::log('$productTypeId : '.$productTypeId);
 
                 switch ($productTypeId) {
-                    case Gracious_Interconnect_Support_ProductType::SIMPLE:
-                    case Gracious_Interconnect_Support_ProductType::VIRTUAL:
-                    case Gracious_Interconnect_Support_ProductType::DOWNLOADABLE:
+                    case Mage_Catalog_Model_Product_Type::TYPE_SIMPLE:
+                    case Mage_Catalog_Model_Product_Type::TYPE_VIRTUAL:
+                    case Mage_Downloadable_Model_Product_Type::TYPE_DOWNLOADABLE:
                         $rows[] = $this->setupOrderItemData($order, $orderItem, $product);
 
                         break;
