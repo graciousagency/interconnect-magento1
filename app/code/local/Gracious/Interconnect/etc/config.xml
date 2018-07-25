@@ -16,6 +16,11 @@
                 <class>Gracious_Interconnect_Helper</class>
             </interconnect>
         </helpers>
+        <helpers>
+            <Gracious_Interconnect>
+                <class>Gracious_Interconnect_Helper</class>
+            </Gracious_Interconnect>
+        </helpers>
         <events>
             <controller_action_predispatch>
                 <observers>
