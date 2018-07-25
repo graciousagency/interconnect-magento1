@@ -2,10 +2,13 @@
 
 /**
  * Class CustomerHistoricInfo
+ *
  * @package Gracious\Interconnect\Model
  * Provides historic information about a customer
  */
-class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializable {
+class Gracious_Interconnect_Model_CustomerHistoricInfo
+    implements JsonSerializable
+{
 
     /**
      * @var string
@@ -39,14 +42,22 @@ class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializab
 
     /**
      * CustomerHistoricInfo constructor.
+     *
      * @param string $email
-     * @param int $totalOrderCount
-     * @param float $totalOrderAmount
+     * @param int    $totalOrderCount
+     * @param float  $totalOrderAmount
      * @param string $firstOrderDate
      * @param string $lastOrderDate
      * @param string $registrationDate |null
      */
-    public function __construct($email, $totalOrderCount, $totalOrderAmount, $firstOrderDate, $lastOrderDate, $registrationDate = null) {
+    public function __construct(
+        $email,
+        $totalOrderCount,
+        $totalOrderAmount,
+        $firstOrderDate,
+        $lastOrderDate,
+        $registrationDate = null
+    ) {
         $this->email = $email;
         $this->totalOrderCount = $totalOrderCount;
         $this->totalOrderAmount = $totalOrderAmount;
@@ -58,71 +69,81 @@ class Gracious_Interconnect_Model_CustomerHistoricInfo implements JsonSerializab
     /**
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
     /**
      * @return int
      */
-    public function getTotalOrderCount() {
+    public function getTotalOrderCount()
+    {
         return $this->totalOrderCount;
     }
 
     /**
      * @return float
      */
-    public function getTotalOrderAmount() {
+    public function getTotalOrderAmount()
+    {
         return $this->totalOrderAmount;
     }
 
     /**
      * @return string
      */
-    public function getFirstOrderDate() {
+    public function getFirstOrderDate()
+    {
         return $this->firstOrderDate;
     }
 
     /**
      * @return string
      */
-    public function getLastOrderDate() {
+    public function getLastOrderDate()
+    {
         return $this->lastOrderDate;
     }
 
     /**
      * @return string
      */
-    public function getRegistrationDate() {
+    public function getRegistrationDate()
+    {
         return $this->registrationDate;
     }
 
     /**
      * @return bool
      */
-    public function isRegisteredCustomer() {
-        return is_string($this->registrationDate) && trim($this->registrationDate) != '';
+    public function isRegisteredCustomer()
+    {
+        return is_string($this->registrationDate)
+            && trim($this->registrationDate) != '';
     }
 
     /**
      * @return array
      */
-    public function toArray() {
+    public function toArray()
+    {
         return [
-            'email' => $this->email,
-            'totalOrderCount' => $this->totalOrderCount,
+            'email'            => $this->email,
+            'totalOrderCount'  => $this->totalOrderCount,
             'totalOrderAmount' => $this->totalOrderAmount,
-            'firstOrderDate' => $this->firstOrderDate,
-            'lastOrderDate' => $this->lastOrderDate,
+            'firstOrderDate'   => $this->firstOrderDate,
+            'lastOrderDate'    => $this->lastOrderDate,
             'registrationDate' => $this->registrationDate,
-            'isRegistered' => $this->isRegisteredCustomer()
+            'isRegistered'     => $this->isRegisteredCustomer(),
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize() {
+    public function jsonSerialize()
+    {
         return json_encode($this->toArray());
     }
 }

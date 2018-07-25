@@ -3,7 +3,8 @@
 /**
  * Class Gracious_Interconnect_Support_PriceCents
  */
-class Gracious_Interconnect_Support_PriceCents {
+class Gracious_Interconnect_Support_PriceCents
+{
 
     /**
      * @var float|int
@@ -12,25 +13,30 @@ class Gracious_Interconnect_Support_PriceCents {
 
     /**
      * PriceCents constructor.
+     *
      * @param float $price
      */
-    function __construct($price) {
+    function __construct($price)
+    {
         $price = $price != null ? $price : 0;
         $this->price = (float)$price;
     }
 
     /**
-     * @return float|int
+     * @param float|int $price
+     *
+     * @return static
      */
-    public function toInt() {
-        return (int)(100 * $this->price);
+    public static function create($price)
+    {
+        return new static($price);
     }
 
     /**
-     * @param float|int $price
-     * @return static
+     * @return float|int
      */
-    public static function create($price) {
-        return new static($price);
+    public function toInt()
+    {
+        return (int)(100 * $this->price);
     }
 }
