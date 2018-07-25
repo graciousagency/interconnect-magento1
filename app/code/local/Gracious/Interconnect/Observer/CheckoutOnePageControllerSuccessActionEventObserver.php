@@ -29,15 +29,14 @@ class Gracious_Interconnect_Observer_CheckoutOnePageControllerSuccessActionEvent
 
         $orderId = $orderIds[0];
 
-        if(!is_int($orderId)) {
+        if(!is_numeric($orderId)) {
             Mage::helper('interconnect/log')->alert(__METHOD__ . '=> Invalid order id (' . json_encode($orderId) . ') Aborting....');
 
             return;
         }
 
-        $orderRepository = Mage::getModel('sales/order');
         /* @var $order Mage_Sales_Model_Order */
-        $order = $orderRepository->load($orderId);
+        $order = Mage::getModel('sales/order')->load($orderId);
 
         if ($order === null || $order->getId() != $orderId) {
             Mage::helper('interconnect/log')->alert(__METHOD__ . '=> No order found for id(' . $orderId . ') Aborting....');

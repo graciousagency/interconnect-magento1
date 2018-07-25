@@ -48,7 +48,7 @@ abstract class Gracious_Interconnect_Console_CommandAbstract extends Mage_Shell_
      * @throws Gracious_Interconnect_System_Exception
      */
     protected function evalInt($value) {
-        if (!is_int($value)) {
+        if (!is_numeric($value)) {
             throw new Gracious_Interconnect_System_Exception('Expected integer but got ' . gettype($value));
         }
     }
