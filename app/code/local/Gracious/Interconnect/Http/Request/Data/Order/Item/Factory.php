@@ -24,7 +24,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Item_Factory extends Graciou
                 switch ($productTypeId) {
                     case Mage_Catalog_Model_Product_Type::TYPE_SIMPLE:
                     case Mage_Catalog_Model_Product_Type::TYPE_VIRTUAL:
-                    case Mage_Catalog_Model_Product_Type::DOWNLOADABLE:
+                    case Mage_Downloadable_Model_Product_Type::TYPE_DOWNLOADABLE:
                         $rows[] = $this->setupOrderItemData($order, $orderItem, $product);
 
                         break;
