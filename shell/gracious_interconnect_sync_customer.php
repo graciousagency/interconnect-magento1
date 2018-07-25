@@ -19,6 +19,7 @@ class Gracious_Interconnect_Console_SyncCustomerCommand extends Gracious_Interco
 
         $customerId = $this->getOption('id');
         $this->evalInt($customerId);
+
         /* @var $customer Mage_Customer_Model_Customer */
         $customer = Mage::getModel('customer/customer')->load($customerId);
 

@@ -10,44 +10,8 @@ synchronize data manually. These console commands can be run from the shell fold
 - `php gracious_interconnect_sync_subscriber.php` :   Synchronizes a subscriber by providing the --id={subscriberId} parameter
 
 **To get the module up and running:**
-- Create a folder /Gracious/Interconnect under app/local.
-- Install the module using composer in this folder. After installation your folder structure for this
-module should look like this:
-````
-    /app
-        /code
-            /local
-                /Gracious
-                    /Interconnect
-                        /Console
-                        /controllers
-                        /etc
-                        /Foundation
-                        /Generic
-                        /Helper
-                        /Http
-                        /Model
-                        /Observer
-                        /Reporting
-                        /shell
-                        /Support
-                        /System
-                        CHANGELOG.md
-                        composer.json
-                        README.md
-````
-- Now create a module config file 'Gracious_Interconnect.xml' in the app/etc folder with this content:
-```xml
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Gracious_Interconnect>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Gracious_Interconnect>
-    </modules>
-</config>
-```
+- `composer require gracious/interconnect-magento1`
+- Log out of Magento admin
 - You will possibly have to clear the cache after installing the module.
 - In the backend of the web shop, go to System > Configuration from the main menu and click on 'Interconnect' in the 
 context menu on the left. You will be presented with a form with the following fields:

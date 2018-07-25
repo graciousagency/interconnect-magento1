@@ -75,8 +75,6 @@ class Gracious_Interconnect_Http_Request_Client extends Zend_Http_Client {
             ->setHeaders([
                 'Content-Type'      => 'application/json',
                 'X-Secret'          => $this->helperConfig->getApiKey(),
-                'X-ModuleType'      => $metaData->getModuleType(),
-                'X-ModuleVersion'   => $metaData->getModuleVersion(),
                 'X-AppHandle'       => 'magento1',
                 'X-AppVersion'      => $metaData->getMagentoVersion(),
                 'X-Domain'          => $metaData->getDomain()
