@@ -13,7 +13,7 @@ class Gracious_Interconnect_Http_Request_Data_Order_Factory extends Gracious_Int
         $quoteId = $order->getQuoteId();
         $prefixedQuoteId = $quoteId !== null ? $this->generateEntityId($quoteId, Gracious_Interconnect_Support_EntityType::QUOTE) : null;
         $orderItemFactory = new Gracious_Interconnect_Http_Request_Data_Order_Item_Factory();
-        $paymentMethod = Gracious_Interconnect_Support_Formatter::unSnakeCase($order->getPayment()->getMethod());
+        $paymentMethod = Mage::helper('interconnect/formatter')->unSnakeCase($order->getPayment()->getMethod());
         $paymentMethod = ucwords($paymentMethod);
         $total = $order->getGrandTotal();
         $discountAmount = $order->getDiscountAmount();
