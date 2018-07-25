@@ -4,7 +4,8 @@
  * Class Gracious_Interconnect_Helper_Log
  * Adapter that adds more verbosity and formatting to the logging.
  */
-class Gracious_Interconnect_Helper_Log extends Mage_Core_Helper_Abstract {
+class Gracious_Interconnect_Helper_Log extends Gracious_Interconnect_Helper_Data
+{
 
     /**
      * @param string $message

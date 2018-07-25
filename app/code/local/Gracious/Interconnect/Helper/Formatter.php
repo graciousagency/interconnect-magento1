@@ -6,7 +6,8 @@
  * @package Gracious\Interconnect\Helper
  * Utility class for formatting data and strings to desired format before sending it to the server
  */
-class Gracious_Interconnect_Helper_Formatter extends Mage_Core_Helper_Abstract {
+class Gracious_Interconnect_Helper_Formatter extends Gracious_Interconnect_Helper_Data
+{
     /**
      * @param int|string $ID
      * @param string $entityTypeHandle

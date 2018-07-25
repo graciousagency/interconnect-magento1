@@ -3,7 +3,7 @@
 /**
  * Class Gracious_Interconnect_Helper_Config
  */
-class Gracious_Interconnect_Helper_Config extends Mage_Core_Helper_Abstract
+class Gracious_Interconnect_Helper_Config extends Gracious_Interconnect_Helper_Data
 {
     const XML_PATH_SERVICE_BASE_URL = 'gracious_interconnect/settings/baseurl';
     const XML_PATH_PREFIX = 'gracious_interconnect/settings/prefix';
