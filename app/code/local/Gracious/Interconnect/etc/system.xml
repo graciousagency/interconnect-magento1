@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
     <sections>
-        <interconnect translate="label" module="interconnect">
+        <gracious_interconnect translate="label" module="interconnect">
             <label>Interconnect</label>
             <tab>service</tab>
             <frontend_type>text</frontend_type>
@@ -45,6 +45,6 @@
                     </fields>
                 </settings>
             </groups>
-        </interconnect>
+        </gracious_interconnect>
     </sections>
 </config>

@@ -8,10 +8,10 @@
                         <children>
                             <config>
                                 <children>
-                                    <interconnect translate="title" module="interconnect">
+                                    <gracious_interconnect translate="title" module="interconnect">
                                         <title>Interconnect</title>
                                         <sort_order>0</sort_order>
-                                    </interconnect>
+                                    </gracious_interconnect>
                                 </children>
                             </config>
                         </children>

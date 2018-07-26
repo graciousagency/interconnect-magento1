@@ -72,9 +72,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <interconnect translate="title" module="interconnect">
+                                    <gracious_interconnect translate="title" module="interconnect">
                                         <title>Configuration</title>
-                                    </interconnect>
+                                    </gracious_interconnect>
                                 </children>
                             </config>
                         </children>
