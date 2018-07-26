@@ -7,4 +7,8 @@
 - getcwd() for root path instead of magic constant
 - Prefixed shell commands with gracious_interconnect_ to prevent overwriting.
 - Fixed old references to Gracious Studios in readme.
+
+**2.0.1** : 2018/07/25
+- Fixed admin not working. Changed translation module in config/adminhtml/system.xml because the helper alias was changed
+- Removed router override in config.xml
  
