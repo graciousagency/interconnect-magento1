@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
     <sections>
-        <gracious_interconnect translate="label" module="gracious_interconnect">
+        <gracious_interconnect translate="label" module="interconnect">
             <label>Interconnect</label>
             <tab>service</tab>
             <frontend_type>text</frontend_type>
