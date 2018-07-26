@@ -64,17 +64,6 @@
             </checkout_onepage_controller_success_action>
         </events>
     </global>
-    <frontend>
-        <routers>
-            <newsletter>
-                <args>
-                    <modules>
-                        <Gracious_Interconnect before="Mage_Newsletter">Gracious_Interconnect_Newsletter</Gracious_Interconnect>
-                    </modules>
-                </args>
-            </newsletter>
-        </routers>
-    </frontend>
     <acl>
         <resources>
             <admin>
@@ -83,7 +72,7 @@
                         <children>
                             <config>
                                 <children>
-                                    <gracious_interconnect translate="title" module="gracious_interconnect">
+                                    <gracious_interconnect translate="title" module="interconnect">
                                         <title>Configuration</title>
                                     </gracious_interconnect>
                                 </children>
