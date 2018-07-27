@@ -38,29 +38,8 @@ class Gracious_Interconnect_Helper_Log extends Gracious_Interconnect_Helper_Data
     /**
      * @param string $message
      */
-    public function warning($message) {
-        Mage::log($message, Zend_Log::WARN);
-    }
-
-    /**
-     * @param string $message
-     */
     public function alert($message) {
         Mage::log($message, Zend_Log::ALERT);
-    }
-
-    /**
-     * @param string $message
-     */
-    public function emergency($message) {
-        Mage::log($message, Zend_Log::EMERG);
-    }
-
-    /**
-     * @param string $message
-     */
-    public function critical($message) {
-        Mage::log($message, Zend_Log::CRIT);
     }
 
     /**
@@ -68,11 +47,15 @@ class Gracious_Interconnect_Helper_Log extends Gracious_Interconnect_Helper_Data
      * @param array $args
      */
     public function exception(Throwable $exception) {
-        Mage::log('*** EXCEPTION ' . str_repeat('*****', 20), Zend_Log::CRIT);
-        Mage::log('*** Type: ' . get_class($exception), Zend_Log::CRIT);
-        Mage::log('*** File: ' . $exception->getFile(), Zend_Log::CRIT);
-        Mage::log('*** Line: ' . $exception->getLine(), Zend_Log::CRIT);
-        Mage::log('*** Message: ' . $exception->getMessage(), Zend_Log::CRIT);
-        Mage::log('*** Trace:  ' . $exception->getTraceAsString(), Zend_Log::CRIT);
+        if(Mage::getIsDeveloperMode()) {
+            Mage::log('*** EXCEPTION ' . str_repeat('*****', 20), Zend_Log::CRIT);
+            Mage::log('*** Type: ' . get_class($exception), Zend_Log::CRIT);
+            Mage::log('*** File: ' . $exception->getFile(), Zend_Log::CRIT);
+            Mage::log('*** Line: ' . $exception->getLine(), Zend_Log::CRIT);
+            Mage::log('*** Message: ' . $exception->getMessage(), Zend_Log::CRIT);
+            Mage::log('*** Trace:  ' . $exception->getTraceAsString(), Zend_Log::CRIT);
+        } else {
+            Mage::log($exception->getMessage(), Zend_Log::CRIT);
+        }
     }
 }
