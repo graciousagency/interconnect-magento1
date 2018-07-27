@@ -11,4 +11,8 @@
 **2.0.1** : 2018/07/25
 - Fixed admin not working. Changed translation module in config/adminhtml/system.xml because the helper alias was changed
 - Removed router override in config.xml
+
+**2.0.2** : 2018/07/27
+- Added required phonenumber for order POST endpoint
+- Limited excessive logging to dev mode 
  
