@@ -38,6 +38,25 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
         ];
     }
 
+    public function setupNewCustomerData(Mage_Customer_Model_Customer $customer) {
+        $customerEmail = $customer->getEmail();
+
+        return [
+            'customerId' => $this->generateEntityId($customer->getId(), Gracious_Interconnect_Support_EntityType::CUSTOMER),
+            'firstName' => $customer->getFirstname(),
+            'lastName' => Mage::helper('interconnect/formatter')->prefixLastName($customer->getLastname(), $customer->getPrefix()),
+            'emailAddress' => $customerEmail,
+            'gender' => $customer->getGender(),
+            'optIn' => $this->isCustomerSubscribedToNewsletter($customerEmail),
+            'phoneNumber' => '',
+            'isAnonymous' => false,
+            'totalOrderCount' => 0,
+            'totalOrderAmount' => 0,
+            'createdAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($customer->getCreatedAt()),
+            'updatedAt' => Mage::helper('interconnect/formatter')->formatDateStringToIso8601($customer->getUpdatedAt())
+        ];
+    }
+
     /**
      * @param Mage_Sales_Model_Order $order
      * @return array
