@@ -21,7 +21,7 @@ class Gracious_Interconnect_Observer_CustomerRegisterSuccessEventObserver {
 
         // Try/catch because we don't want to disturb critical processes such as the checkout
         try {
-            $requestData = $customerDataFactory->setupData($customer);
+            $requestData = $customerDataFactory->setupNewCustomerData($customer);
             $client = new Gracious_Interconnect_Http_Request_Client();
             $client->sendData($requestData, Gracious_Interconnect_Http_Request_Client::ENDPOINT_CUSTOMER);
         } catch (Throwable $exception) {
