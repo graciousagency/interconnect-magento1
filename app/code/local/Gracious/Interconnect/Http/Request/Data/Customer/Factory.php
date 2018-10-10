@@ -15,7 +15,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
         $customerEmail = $customer->getEmail();
         $interconnectCustomer = new Gracious_Interconnect_Model_Customer($customerEmail, $customer);
         $historicInfo = $interconnectCustomer->getHistoricInfo();
-
+        $defaultBillingAddress = $customer->getDefaultBillingAddress();
         return [
             'customerId' => $this->generateEntityId($customerId, Gracious_Interconnect_Support_EntityType::CUSTOMER),
             'firstName' => $customer->getFirstname(),
@@ -26,7 +26,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
             'optIn' => $this->isCustomerSubscribedToNewsletter($customerEmail),
             'billingAddress' => $this->setupAddressData($customer->getDefaultBillingAddress()),
             'shippingAddress' => $this->setupAddressData($customer->getDefaultShippingAddress()),
-            'phoneNumber' => $customer->getDefaultBillingAddress()->getTelephone() ?? null,
+            'phoneNumber' => ($defaultBillingAddress) ? $defaultBillingAddress->getTelephone() : null,
             'isAnonymous' => false,
             'totalOrderCount' => (int)$historicInfo->getTotalOrderCount(),
             'totalOrderAmount' => Gracious_Interconnect_Support_PriceCents::create($historicInfo->getTotalOrderAmount())->toInt(),
@@ -77,7 +77,7 @@ class Gracious_Interconnect_Http_Request_Data_Customer_Factory extends Gracious_
             'optIn' => null,
             'billingAddress' => $this->setupAddressData($billingAddress),
             'shippingAddress' => $this->setupAddressData($shippingAddress),
-            'phoneNumber' => $billingAddress->getTelephone() ?? null,
+            'phoneNumber' => ($billingAddress) ? $billingAddress->getTelephone() : null,
             'isAnonymous' => true,
             'totalOrderCount' => (int)$historicInfo->getTotalOrderCount(),
             'totalOrderAmountInCents' => Gracious_Interconnect_Support_PriceCents::create($historicInfo->getTotalOrderAmount())->toInt(),
