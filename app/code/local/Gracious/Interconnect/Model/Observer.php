@@ -40,12 +40,14 @@ class Gracious_Interconnect_Model_Observer
     {
 
         $email = (string)$observer->getRequest()->getPost('email');
-        $subscriber = $this->getSubscriberByEmail($email);
-
-        if ($subscriber !== null) {
-            $this->sendSubscription($subscriber);
+        if(empty($email))    {
+            return;
         }
-
+        $subscriber = $this->getSubscriberByEmail($email);
+        if (null === $subscriber)    {
+            return;
+        }
+        $this->sendSubscription($subscriber);
     }
 
     /**
